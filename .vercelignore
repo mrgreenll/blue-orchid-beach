@@ -1,0 +1,15 @@
+# Files kept in the repo but NOT served on the live site
+
+# Local dev tooling
+serve.mjs
+screenshot.mjs
+temporary screenshots/
+
+# Internal docs / instructions
+CLAUDE.md
+brand_assets/MANIFEST.md
+brand_assets/brand_summary.md
+brand_assets/brand-guidelines/
+
+# OS cruft
+.DS_Store
