@@ -99,6 +99,7 @@
 
       <!-- Superior Room, Garden View (No Balcony) -->
       <article class="suite" id="superior-garden">
+        <span class="suite__word" aria-hidden="true">Garden</span>
         <div data-m="curtain" class="suite__media">
           <span class="tag">Best value</span>
           <img width="1200" height="900" src="assets/img/room-yellow-feature-01.webp" alt="Bright Superior room with the signature warm-yellow feature wall" loading="lazy" decoding="async">
@@ -125,6 +126,7 @@
 
       <!-- Superior Sea View with Balcony (2nd Floor) -->
       <article class="suite suite--rev" id="superior-sea-balcony">
+        <span class="suite__word" aria-hidden="true">Sea</span>
         <div data-m="curtain" class="suite__media">
           <span class="tag">Sea View</span>
           <img width="1200" height="900" src="assets/img/room-balcony-seaview-01.webp" alt="Second-floor Superior room with a private balcony over the open Andaman Sea" loading="lazy" decoding="async">
@@ -151,6 +153,7 @@
 
       <!-- Deluxe Room with Pool View -->
       <article class="suite" id="deluxe-pool-view">
+        <span class="suite__word" aria-hidden="true">Pool</span>
         <div data-m="curtain" class="suite__media">
           <span class="tag tag--orchid">Deluxe</span>
           <img width="1600" height="1200" src="assets/img/room-poolview-curtains-01.webp" alt="Deluxe room opening through sheer curtains onto the infinity pool and sea" loading="lazy" decoding="async">
@@ -187,12 +190,12 @@
       <h2 data-m="lines">Thoughtful from check-in to check-out</h2>
     </div>
     <div data-m="kids" class="grid grid-3" style="gap:18px">
-      <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1 8a5 5 0 0 1-10 0L6 3z"/><path d="M9 21h6"/></svg><div><h4>Daily breakfast</h4><p>Fresh fruit, juices and a hot plate on the timber dining deck.</p></div></div>
-      <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg><div><h4>Free Wi-Fi</h4><p>Throughout the rooms, pools and common areas.</p></div></div>
-      <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V10l8-5 8 5v10"/><path d="M3 13a9 5 0 0 1 18 0"/></svg><div><h4>Infinity-pool access</h4><p>Two sea-facing pools, loungers and a poolside lounge.</p></div></div>
-      <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><div><h4>SHA-certified care</h4><p>Health-and-safety standards across the property.</p></div></div>
-      <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1-5h10l1 5M8 12V8a4 4 0 0 1 8 0v4"/><circle cx="8" cy="20" r="1.4"/><circle cx="16" cy="20" r="1.4"/></svg><div><h4>Airport transfer</h4><p>Arranged on request — Krabi airport is about 40 minutes away.</p></div></div>
-      <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg><div><h4>Daily housekeeping</h4><p>Warm, attentive service throughout your stay.</p></div></div>
+      <div class="loccard"><svg data-icon="breakfast" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="i-glass" d="M6 3h12l-1 8a5 5 0 0 1-10 0L6 3z"/><path class="i-base" d="M9 21h6"/><path class="i-stem" d="M12 16v5"/></svg><div><h4>Daily breakfast</h4><p>Fresh fruit, juices and a hot plate on the timber dining deck.</p></div></div>
+      <div class="loccard"><svg data-icon="wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle class="i-dot" cx="12" cy="20" r="1" fill="currentColor"/><path class="i-arc" d="M8.5 16.5a5 5 0 0 1 7 0"/><path class="i-arc" d="M5 13a10 10 0 0 1 14 0"/><path class="i-arc" d="M2 9.5a15 15 0 0 1 20 0"/></svg><div><h4>Free Wi-Fi</h4><p>Throughout the rooms, pools and common areas.</p></div></div>
+      <div class="loccard"><svg data-icon="pool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V10l8-5 8 5v10"/><path class="i-arch" d="M3 13a9 5 0 0 1 18 0"/></svg><div><h4>Infinity-pool access</h4><p>Two sea-facing pools, loungers and a poolside lounge.</p></div></div>
+      <div class="loccard"><svg data-icon="sha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle class="i-ring" cx="12" cy="12" r="9"/><path class="i-check" d="m9 12 2 2 4-4"/></svg><div><h4>SHA-certified care</h4><p>Health-and-safety standards across the property.</p></div></div>
+      <div class="loccard"><svg data-icon="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g class="i-car"><path d="M5 17h14M6 17l1-5h10l1 5M8 12V8a4 4 0 0 1 8 0v4"/><circle cx="8" cy="20" r="1.4"/><circle cx="16" cy="20" r="1.4"/></g></svg><div><h4>Airport transfer</h4><p>Arranged on request — Krabi airport is about 40 minutes away.</p></div></div>
+      <div class="loccard"><svg data-icon="housekeeping" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="i-line" d="M3 7h18"/><path class="i-line" d="M3 12h18"/><path class="i-line" d="M3 17h12"/></svg><div><h4>Daily housekeeping</h4><p>Warm, attentive service throughout your stay.</p></div></div>
     </div>
   </div>
 </section>

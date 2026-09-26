@@ -409,7 +409,12 @@ body.menu-open .mobile-menu{transform:translateX(0);visibility:visible;transitio
 .price .from{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
 
 /* Big alternating room rows (rooms page) */
-.suite{display:grid;gap:clamp(24px,4vw,56px);align-items:center}
+.suite{position:relative;isolation:isolate;display:grid;gap:clamp(24px,4vw,56px);align-items:center}
+/* Each room's defining view, in outline, peeking above its photo */
+.suite__word{position:absolute;z-index:-1;top:-.62em;left:-.02em;pointer-events:none;user-select:none;white-space:nowrap;
+  font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;font-size:clamp(4.6rem,12vw,11rem);line-height:1;
+  color:transparent;-webkit-text-stroke:1.2px rgba(42,32,24,.2)}
+@media (min-width:900px){.suite--rev .suite__word{left:auto;right:-.02em}}
 @media (min-width:900px){.suite{grid-template-columns:1.05fr 1fr}.suite--rev .suite__media{order:2}}
 .suite__media{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-3);aspect-ratio:3/2}
 .suite__media img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
