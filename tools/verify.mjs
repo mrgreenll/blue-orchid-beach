@@ -1,7 +1,7 @@
 // Headless checks for the Blue Orchid site — the regression suite for the Tide & Light pass.
 // Usage:  node tools/verify.mjs [baseUrl] [--only=name,name]
 //   baseUrl defaults to http://localhost:3140   (start it with: PORT=3140 node serve.mjs)
-//   names: assets console overflow nojs reduced cdnfail booking-prefill booking-noscroll
+//   names: assets console overflow clip nojs reduced cdnfail booking-prefill booking-noscroll
 //          booking-flash reel gallery-filter lightbox-a11y intro
 import { readFileSync, existsSync } from 'fs';
 import { join, dirname, resolve } from 'path';
@@ -128,6 +128,30 @@ async function run() {
       }
     }
     return bad.length ? failWith(bad.join(', ')) : 'no horizontal scroll at 375/768/1024/1440';
+  });
+
+  // body{overflow-x:hidden} hides a horizontal scrollbar, but not the damage: text pushed
+  // past the edge is simply cut off. Look for readable things that end off-screen.
+  await check('clip', async () => {
+    const bad = [];
+    for (const w of [375, 768, 1024, 1440]) {
+      await b.size(w, w < 768 ? 812 : 900);
+      for (const p of PAGES) {
+        await b.goto(`${BASE}/${p}?still=1`, 500);
+        const cut = await b.evaluate(`(() => {
+          const vw = document.documentElement.clientWidth;
+          // Only a scrollable container exempts an element: overflow:hidden is the very thing
+          // that hides this bug (the footer clips itself).
+          const scrolls = (el) => { for (let n = el.parentElement; n && n !== document.body; n = n.parentElement) { const o = getComputedStyle(n).overflowX; if (o === 'auto' || o === 'scroll') return true; } return false; };
+          return [...document.querySelectorAll('h1,h2,h3,h4,p,a,button,input,select,li,dd,dt,label,small,b')]
+            .filter((el) => !el.closest('.marquee, .mobile-menu, .lightbox, .intro, [aria-hidden="true"]'))
+            .filter((el) => { const r = el.getBoundingClientRect(); return r.width && r.right > vw + 1 && !scrolls(el); })
+            .map((el) => el.tagName.toLowerCase() + ':' + (el.textContent || el.placeholder || '').trim().slice(0, 24));
+        })()`);
+        if (cut.length) bad.push(`${p}@${w}: ${cut.slice(0, 2).join(' | ')}`);
+      }
+    }
+    return bad.length ? failWith(bad.join('; ')) : 'nothing cut off at the right edge at any width';
   });
 
   await check('nojs', async () => {
