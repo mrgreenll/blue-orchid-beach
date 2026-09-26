@@ -13,3 +13,6 @@ brand_assets/brand-guidelines/
 
 # OS cruft
 .DS_Store
+
+# Specs & plans (repo-only)
+docs/
