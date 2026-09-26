@@ -273,6 +273,157 @@
     M.entrance.play(0);
   };
 
+  /* ================= Global chrome ================= */
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var esc = function (t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
+  M.clamp = clamp;
+
+  // Nav: hides on the way down, returns on the way up; hairline tracks page progress.
+  function chromeNav() {
+    var nav = d.querySelector('.nav');
+    if (!nav) return;
+    qsa('.nav-links a').forEach(function (a) {
+      var t = esc(a.textContent.trim());
+      a.innerHTML = '<span class="roll"><span>' + t + '</span><span aria-hidden="true">' + t + '</span></span>';
+    });
+    var bar = nav.querySelector('.nav__progress');
+    var lastY = w.scrollY, hidden = false;
+    var setHidden = function (v) { if (v !== hidden) { hidden = v; nav.classList.toggle('nav--hide', v); } };
+    ScrollTrigger.create({
+      start: 0, end: 'max',
+      onUpdate: function (self) {
+        if (bar) bar.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')';
+        var y = self.scroll();
+        if (y < 160) setHidden(false);
+        else if (y > lastY + 4 && !d.body.classList.contains('menu-open')) setHidden(true);
+        else if (y < lastY - 4) setHidden(false);
+        lastY = y;
+      },
+    });
+    nav.addEventListener('focusin', function () { setHidden(false); });
+  }
+
+  // Scroll is one day: dawn → noon → golden hour → dusk, crossfaded behind the page.
+  function chromeSky() {
+    var sky = d.querySelector('.sky');
+    if (!sky) return;
+    var L = function (n) { return sky.querySelector('.sky__l--' + n); };
+    gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { start: 0, end: 'max', scrub: 0.8 } })
+      .to(L('dawn'), { opacity: 0, duration: 0.25 }, 0)
+      .to(L('noon'), { opacity: 1, duration: 0.25 }, 0)
+      .to(L('noon'), { opacity: 0, duration: 0.35 }, 0.25)
+      .to(L('gold'), { opacity: 1, duration: 0.35 }, 0.25)
+      .to(L('gold'), { opacity: 0, duration: 0.3 }, 0.6)
+      .to(L('dusk'), { opacity: 1, duration: 0.3 }, 0.6)
+      .to({}, { duration: 0.1 }, 0.9);
+  }
+
+  // Sun dial: the sun crosses its arc with the page and the label names the hour.
+  // Hovering offers what the button does.
+  function chromeSundial() {
+    var dial = d.querySelector('.sundial');
+    if (!dial) return;
+    var rot = dial.querySelector('.sundial__rot'), label = dial.querySelector('.sundial__label');
+    var phases = [[0, 'Morning'], [0.2, 'Midday'], [0.45, 'Golden hour'], [0.72, 'Dusk'], [0.9, 'Night']];
+    var phase = '', shown = label.textContent.trim(), hover = false;
+    gsap.set(rot, { rotation: 0, svgOrigin: '32 34' });
+    var turn = gsap.quickTo(rot, 'rotation', { duration: 0.8, ease: 'power3' });
+    function show(text) {
+      if (text === shown) return;
+      shown = text;
+      // A swap still in flight is settled first, so fast scrolling never stacks labels.
+      while (label.children.length > 1) label.removeChild(label.firstElementChild);
+      var old = label.firstElementChild;
+      gsap.killTweensOf(old);
+      gsap.set(old, { yPercent: 0 });
+      var next = d.createElement('span');
+      next.textContent = text;
+      label.appendChild(next);
+      gsap.fromTo([old, next], { yPercent: 0 }, {
+        yPercent: -100, duration: 0.6, ease: 'expo.out',
+        onComplete: function () { if (old && old.parentNode) old.remove(); gsap.set(next, { yPercent: 0 }); },
+      });
+    }
+    ScrollTrigger.create({
+      start: 0, end: 'max',
+      onUpdate: function (self) {
+        turn(self.progress * 180);
+        var name = 'Morning';
+        phases.forEach(function (p) { if (self.progress >= p[0]) name = p[1]; });
+        if (name !== phase) { phase = name; if (!hover) show(name); }
+      },
+    });
+    dial.addEventListener('pointerenter', function () { hover = true; show('Back to top'); });
+    dial.addEventListener('pointerleave', function () { hover = false; show(phase || 'Morning'); });
+    phase = 'Morning';
+    show('Morning');
+  }
+
+  // A bubble follows the pointer and names what a click does, over photos that open.
+  function chromeCursor() {
+    if (!M.fine) return;
+    qsa('.marquee__item, .g-item').forEach(function (el) { el.setAttribute('data-cursor', 'View'); });
+    var c = d.createElement('div');
+    c.className = 'cursor';
+    c.setAttribute('aria-hidden', 'true');
+    var lab = d.createElement('span');
+    c.appendChild(lab);
+    d.body.appendChild(c);
+    gsap.set(c, { xPercent: -50, yPercent: -50, scale: 0 });
+    var xTo = gsap.quickTo(c, 'x', { duration: 0.45, ease: 'power3' });
+    var yTo = gsap.quickTo(c, 'y', { duration: 0.45, ease: 'power3' });
+    var active = null;
+    w.addEventListener('pointermove', function (e) { xTo(e.clientX); yTo(e.clientY); }, { passive: true });
+    d.addEventListener('pointerover', function (e) {
+      var t = e.target.closest ? e.target.closest('[data-cursor]') : null;
+      if (t === active) return;
+      active = t;
+      if (t) {
+        lab.textContent = t.getAttribute('data-cursor');
+        gsap.to(c, { scale: 1, duration: 0.55, ease: 'back.out(1.8)', overwrite: 'auto' });
+      } else {
+        gsap.to(c, { scale: 0, duration: 0.35, ease: 'power3.out', overwrite: 'auto' });
+      }
+    });
+    d.documentElement.addEventListener('pointerleave', function () {
+      active = null;
+      gsap.to(c, { scale: 0, duration: 0.3, overwrite: 'auto' });
+    });
+    M.cursor = { el: c, label: lab };
+  }
+
+  // Primary buttons lean toward the pointer, a little.
+  function chromeMagnetic() {
+    if (!M.fine) return;
+    qsa('.btn:not(.btn--sm), .nav__cta, .subscribe button, .sundial').forEach(function (el) {
+      var xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3' });
+      var yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3' });
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        xTo(clamp((e.clientX - (r.left + r.width / 2)) * 0.28, -10, 10));
+        yTo(clamp((e.clientY - (r.top + r.height / 2)) * 0.34, -8, 8));
+      });
+      el.addEventListener('pointerleave', function () { xTo(0); yTo(0); });
+    });
+  }
+
+  // Footer is night: fireflies drift only while it is on screen; the wordmark rises.
+  function chromeFooter() {
+    var footer = d.querySelector('.footer');
+    if (!footer) return;
+    ScrollTrigger.create({
+      trigger: footer, start: 'top bottom', end: 'bottom top',
+      toggleClass: { targets: footer, className: 'is-inview' },
+    });
+    var mark = footer.querySelector('.footer__mark');
+    if (mark) {
+      gsap.fromTo(mark, { yPercent: 55, opacity: 0 }, {
+        yPercent: 0, opacity: 0.08, ease: 'none',
+        scrollTrigger: { trigger: footer, start: 'top 85%', end: 'bottom bottom', scrub: 0.6 },
+      });
+    }
+  }
+
   /* ================= Boot ================= */
   var booted = false;
   function boot() {
@@ -281,6 +432,12 @@
     initLenis();
     (M.pages[M.page] || []).forEach(function (fn) { fn(M); });
     initReveals();
+    chromeNav();
+    chromeSky();
+    chromeSundial();
+    chromeCursor();
+    chromeMagnetic();
+    chromeFooter();
     M.chrome.forEach(function (fn) { fn(M); });
     M.entrance = buildEntrance();
 

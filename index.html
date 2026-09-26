@@ -16,6 +16,7 @@
 <script>addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&!t.closest('.lightbox')){t.style.visibility='hidden';if(t.parentElement)t.parentElement.classList.add('media-fallback');}},true);</script>
 </head>
 <body data-page="home">
+<div class="sky" aria-hidden="true"><i class="sky__l sky__l--dawn"></i><i class="sky__l sky__l--noon"></i><i class="sky__l sky__l--gold"></i><i class="sky__l sky__l--dusk"></i></div>
 
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
@@ -32,6 +33,7 @@
     <a class="btn btn--sm nav__cta" href="booking.html">Reserve</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
+  <span class="nav__progress" aria-hidden="true"></span>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html" aria-current="page">Home</a>
@@ -369,6 +371,7 @@
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
+  <div class="fireflies" aria-hidden="true"><i style="--x:33.8%;--y:20.1%;--t:10.9s;--d:-0.4s;--dx:-47px;--dy:-57px"></i><i style="--x:9.3%;--y:48.6%;--t:7.2s;--d:-2.6s;--dx:-39px;--dy:-25px"></i><i style="--x:54.7%;--y:12.7%;--t:10.4s;--d:-5.7s;--dx:-60px;--dy:-57px"></i><i style="--x:40.5%;--y:86.1%;--t:7.3s;--d:-5.2s;--dx:50px;--dy:-29px"></i><i style="--x:53.7%;--y:53.7%;--t:10.4s;--d:-4.1s;--dx:-61px;--dy:-56px"></i><i style="--x:62.8%;--y:37.8%;--t:10.3s;--d:-0.4s;--dx:-63px;--dy:-33px"></i><i style="--x:49.7%;--y:50.5%;--t:11.7s;--d:-2.8s;--dx:47px;--dy:-39px"></i><i style="--x:26.9%;--y:22.4%;--t:11.7s;--d:-0.5s;--dx:57px;--dy:-51px"></i><i style="--x:84.5%;--y:66.4%;--t:8.7s;--d:-5.9s;--dx:-56px;--dy:-46px"></i><i style="--x:19.2%;--y:35.4%;--t:12.6s;--d:-2.5s;--dx:-59px;--dy:-56px"></i><i style="--x:76.6%;--y:73.5%;--t:9.0s;--d:-2.1s;--dx:61px;--dy:-49px"></i><i style="--x:10.3%;--y:15.5%;--t:8.6s;--d:-4.2s;--dx:-27px;--dy:-66px"></i></div>
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
@@ -406,6 +409,7 @@
         </div>
       </div>
     </div>
+    <div class="footer__mark" aria-hidden="true"><img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="" width="8460" height="714" loading="lazy"></div>
     <div class="footer__bottom">
       <span>© <span id="year">2026</span> Blue Orchid Beach · Ao Nam Mao, Krabi</span>
       <span>Sun-warmed serenity, framed by the sea.</span>

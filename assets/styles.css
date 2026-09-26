@@ -67,11 +67,6 @@ body{
   line-height:1.75;
   color:var(--body);
   background-color:var(--paper);
-  background-image:
-    radial-gradient(58vw 58vw at 88% -8%, rgba(65,163,189,.12), transparent 60%),
-    radial-gradient(46vw 46vw at -12% 8%, rgba(206,163,4,.07), transparent 58%),
-    radial-gradient(60vw 50vw at 50% 112%, rgba(168,67,101,.06), transparent 60%);
-  background-attachment:fixed;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow-x:hidden;
@@ -82,6 +77,26 @@ a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
 input,select,textarea{font:inherit;color:inherit}
 ul{list-style:none;padding:0}
+
+/* Day-cycle sky: a fixed layer behind the content (the body's own paper shows beneath
+   it). Dawn matches the page's original light; motion.js crossfades noon, golden hour
+   and dusk in as you scroll. Replaces background-attachment:fixed, which repaints. */
+.sky{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.sky__l{position:absolute;inset:0}
+.sky__l--dawn{background:
+  radial-gradient(58vw 58vw at 88% -8%, rgba(65,163,189,.14), transparent 60%),
+  radial-gradient(46vw 46vw at -12% 8%, rgba(206,163,4,.07), transparent 58%),
+  radial-gradient(60vw 50vw at 50% 112%, rgba(168,67,101,.06), transparent 60%)}
+.sky__l--noon{opacity:0;background:
+  radial-gradient(84vw 62vw at 50% -14%, rgba(129,180,224,.2), transparent 62%),
+  radial-gradient(54vw 54vw at 104% 96%, rgba(65,163,189,.12), transparent 60%)}
+.sky__l--gold{opacity:0;background:
+  radial-gradient(86vw 72vw at 6% 104%, rgba(229,200,155,.46), transparent 62%),
+  radial-gradient(60vw 52vw at 94% 6%, rgba(233,200,74,.16), transparent 60%)}
+.sky__l--dusk{opacity:0;background:
+  radial-gradient(84vw 72vw at 94% 104%, rgba(168,67,101,.2), transparent 62%),
+  radial-gradient(72vw 60vw at -4% -6%, rgba(72,145,194,.14), transparent 60%),
+  radial-gradient(60vw 44vw at 40% 70%, rgba(229,200,155,.14), transparent 70%)}
 
 /* Film-grain overlay for depth (subtle) */
 body::after{
@@ -128,7 +143,7 @@ p{text-wrap:pretty}
 .section-head.center{margin-inline:auto;text-align:center}
 .section-head .kicker{margin-bottom:18px}
 .section-head h2{margin-bottom:16px}
-.bg-paper2{background:var(--paper-2)}
+.bg-paper2{background:rgba(236,227,210,.62)} /* translucent so the day-cycle light reads through */
 .eyebrow-line{width:64px;height:2px;background:var(--yellow);border-radius:2px;margin-top:22px}
 .center .eyebrow-line{margin-inline:auto}
 
@@ -585,7 +600,10 @@ html.still .marquee__row{animation:none}
 .footer{position:relative;overflow:hidden;background:linear-gradient(165deg,var(--foliage),var(--foliage-deep));color:var(--cream-dim);padding-top:clamp(56px,8vw,86px)}
 .footer::before{content:"";position:absolute;inset:0;opacity:.4;pointer-events:none;
   background:radial-gradient(46vw 46vw at 88% 0%,rgba(65,163,189,.28),transparent 60%),radial-gradient(40vw 40vw at 4% 100%,rgba(206,163,4,.18),transparent 60%)}
-.footer .container{position:relative}
+.footer .container{position:relative;z-index:1}
+.fireflies{display:none;position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.footer__mark{margin-top:clamp(30px,5vw,60px);opacity:.08;pointer-events:none;user-select:none}
+.footer__mark img{width:100%;height:auto}
 .footer__top{display:grid;gap:38px;padding-bottom:46px;border-bottom:1px solid var(--line-dark)}
 @media (min-width:760px){.footer__top{grid-template-columns:1.4fr 1fr 1fr 1.2fr}}
 .footer__brand img{height:30px;width:auto;margin-bottom:18px}
@@ -641,7 +659,7 @@ html.still .marquee__row{animation:none}
 .sundial__svg{width:46px;height:29px;overflow:visible;flex-shrink:0}
 .sundial__arc{fill:none;stroke:rgba(244,236,220,.36);stroke-width:1.5;stroke-dasharray:1.5 3.4;stroke-linecap:round}
 .sundial__horizon{fill:none;stroke:rgba(244,236,220,.5);stroke-width:1.5;stroke-linecap:round}
-.sundial__rot{transform-origin:32px 34px;transform:rotate(90deg)}
+html:not(.motion-live) .sundial__rot{transform-origin:32px 34px;transform:rotate(90deg)} /* static: sun at noon */
 .sundial__sun{fill:var(--yellow-soft)}
 .sundial__glow{fill:var(--yellow-soft);opacity:.2}
 .sundial__label{display:block;overflow:hidden;height:1.5em;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:.95rem;line-height:1.5em;white-space:nowrap}
