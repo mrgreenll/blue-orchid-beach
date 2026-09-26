@@ -135,9 +135,12 @@ p{text-wrap:pretty}
 
 /* Section ornament — abstract orchid */
 .ornament{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--yellow)}
-.ornament::before,.ornament::after{content:"";height:1px;width:54px;background:linear-gradient(90deg,transparent,currentColor)}
-.ornament::after{background:linear-gradient(270deg,transparent,currentColor)}
-.ornament svg{width:22px;height:22px;opacity:.95}
+.ornament::before,.ornament::after{content:"";height:1px;width:54px;background:linear-gradient(90deg,transparent,currentColor);transform:scaleX(var(--o,1));transform-origin:right center}
+.ornament::after{background:linear-gradient(270deg,transparent,currentColor);transform-origin:left center}
+.ornament svg{width:30px;height:30px;overflow:visible}
+.ornament .petal{fill:currentColor}
+.ornament .ornament__lip{fill:var(--orchid)}
+.ornament .ornament__column{fill:var(--card)}
 
 /* ---------- Layout ---------- */
 .container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:22px}

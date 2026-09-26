@@ -168,7 +168,11 @@
       <p data-m="up" class="muted">Lead with the sea. Every corner of the resort is composed around the turquoise water, the warm timber and the slow Andaman sunset.</p>
     </div>
 
-    <div class="grid" style="gap:clamp(40px,6vw,84px)">
+    <div class="grid chapters" style="gap:clamp(40px,6vw,84px)">
+      <div class="chapters__hud" aria-hidden="true">
+        <span class="chapters__count"><span class="chapters__digits"><i>01</i><i>02</i><i>03</i></span><span class="chapters__of">/ 03</span></span>
+        <span class="chapters__bar"><i></i></span>
+      </div>
       <!-- Pools -->
       <div class="feature">
         <div data-m="curtain" class="feature__media">
@@ -228,7 +232,15 @@
 <section class="section--tight section">
   <div class="container">
     <div data-m="ornament" class="ornament" style="margin-bottom:40px">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6Zm0 14c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6ZM2 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0Zm14 0c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0Z"/><circle cx="12" cy="12" r="2.4"/></svg>
+      <svg class="ornament__orchid" viewBox="0 0 48 48" aria-hidden="true">
+        <g transform="rotate(130 24 24)"><path class="petal" d="M24 24C21.2 18.6 20.6 11 24 4.5c3.4 6.5 2.8 14.1 0 19.5Z"/></g>
+        <g transform="rotate(230 24 24)"><path class="petal" d="M24 24C21.2 18.6 20.6 11 24 4.5c3.4 6.5 2.8 14.1 0 19.5Z"/></g>
+        <g><path class="petal" d="M24 24C21.2 18.6 20.6 11 24 4.5c3.4 6.5 2.8 14.1 0 19.5Z"/></g>
+        <g transform="rotate(62 24 24)"><path class="petal" d="M24 24c-5.4-4.1-7-12.6-.9-17.4.5-.3 1.3-.3 1.8 0 6.1 4.8 4.5 13.3-.9 17.4Z"/></g>
+        <g transform="rotate(-62 24 24)"><path class="petal" d="M24 24c-5.4-4.1-7-12.6-.9-17.4.5-.3 1.3-.3 1.8 0 6.1 4.8 4.5 13.3-.9 17.4Z"/></g>
+        <path class="petal ornament__lip" d="M24 24c-3.6 2.4-4.4 8.4 0 12.6 4.4-4.2 3.6-10.2 0-12.6Z"/>
+        <circle class="petal ornament__column" cx="24" cy="24" r="2.3"/>
+      </svg>
     </div>
     <div data-m="kids" class="stats">
       <div class="stat text-center"><div class="num">28</div><div class="lbl">Warm rooms</div></div>

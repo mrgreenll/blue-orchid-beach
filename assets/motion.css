@@ -144,3 +144,48 @@ html.vt-back::view-transition-new(root){animation-name:vt-rise-back;border-radiu
 .motion .essence::before{animation:breathe 20s ease-in-out infinite alternate;will-change:transform}
 @keyframes breathe{from{transform:scale(1) translate(0,0)}to{transform:scale(1.14) translate(-2.5%,2%)}}
 .motion .essence .feature__media img[data-vibe-main]{transform:scale(1.12)} /* room for the drift */
+
+/* ---------- Home: three chapters (wide screens, motion only) ----------
+   JS adds .is-on. The features dissolve into one grid: the texts stack on the left, the
+   three photos share one sticky frame on the right, and each chapter wipes its photo up
+   over the last. Without .is-on this is the ordinary alternating layout. */
+.chapters__hud,.chapters__shade{display:none}
+@media (min-width:1024px){
+  .chapters.is-on{grid-template-columns:.85fr 1.15fr;column-gap:clamp(48px,6vw,96px);row-gap:0;align-items:start}
+  .chapters.is-on .feature{display:contents}
+  .chapters.is-on .feature__body{grid-column:1;min-height:84vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-block:6vh;
+    opacity:.26;transition:opacity .8s var(--ease)}
+  .chapters.is-on .feature__body.is-active{opacity:1}
+  .chapters.is-on .feature__media,.chapters.is-on .chapters__hud{grid-column:2;grid-row:1 / span 3;align-self:start;
+    position:sticky;top:calc(50vh - min(32vh,310px));height:min(64vh,620px);aspect-ratio:auto;order:0}
+  .chapters.is-on .feature__body{grid-row:var(--row)}
+  .chapters.is-on .feature__media.is-layer{box-shadow:none} /* one shadow for the stack */
+  .chapters.is-on .feature__media::after{display:none} /* one shared tint, on the HUD */
+  .chapters.is-on .feature:hover .feature__media img{transform:none}
+  .chapters.is-on .feature__media img{transition:none}
+  .chapters.is-on .chapters__shade{display:block;position:absolute;inset:0;z-index:1;background:#0d1208;opacity:0;pointer-events:none}
+  .chapters.is-on .feature__badge{z-index:2}
+  .chapters.is-on .chapters__hud{display:block;z-index:4;pointer-events:none;border-radius:var(--r-lg);overflow:hidden}
+  .chapters__hud::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(168,67,101,.12),rgba(65,163,189,.06));mix-blend-mode:multiply}
+  .chapters__hud::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(0deg,rgba(13,18,8,.55),transparent)}
+  .chapters__count{position:absolute;left:30px;bottom:34px;z-index:1;display:flex;align-items:baseline;gap:10px;color:#fff;
+    font-family:"Playfair Display",Georgia,serif;font-variant-numeric:lining-nums tabular-nums;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .chapters__digits{display:block;height:1em;overflow:hidden;font-size:3rem;line-height:1}
+  .chapters__digits i{display:block;font-style:normal;height:1em}
+  .chapters__of{font-size:1rem;color:rgba(255,255,255,.72);letter-spacing:.06em}
+  .chapters__bar{position:absolute;left:30px;right:30px;bottom:22px;z-index:1;height:2px;background:rgba(255,255,255,.22);border-radius:2px;overflow:hidden}
+  .chapters__bar i{position:absolute;inset:0;background:var(--yellow-soft);transform:scaleX(0);transform-origin:left center}
+}
+
+/* ---------- Odometer numbers (stats) ---------- */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.odo{display:inline-flex;align-items:flex-start;font-variant-numeric:lining-nums tabular-nums}
+.odo__col{display:inline-block;height:1.1em;overflow:hidden;line-height:1.1}
+.odo__strip{display:block}
+.odo__strip b{display:block;height:1.1em;font-weight:inherit}
+.odo__ch{display:inline-block;line-height:1.1}
+
+/* ---------- Room cards: a glare follows the pointer across the tilt ---------- */
+.room-card__glare{position:absolute;inset:-50%;z-index:3;pointer-events:none;opacity:0;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.18),transparent 38%);transition:opacity .5s var(--ease)}
+.room-card:hover .room-card__glare{opacity:1}
