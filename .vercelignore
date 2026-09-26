@@ -3,6 +3,7 @@
 # Local dev tooling
 serve.mjs
 screenshot.mjs
+tools/
 temporary screenshots/
 
 # Internal docs / instructions
