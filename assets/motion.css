@@ -231,3 +231,14 @@ html.vt-back::view-transition-new(root){animation-name:vt-rise-back;border-radiu
 .motion-live .filter.is-active{background:var(--card);border-color:var(--foliage);color:var(--cream)}
 .motion-live .filter.is-active::before{transform:scaleX(1)}
 .motion-live .masonry{position:relative}
+
+/* ---------- Booking ---------- */
+.motion-live .panel{animation:none} /* motion.js slides panels by direction instead */
+.motion-live .stepper li.active .dot{animation:dotpop .7s var(--spring)}
+@keyframes dotpop{0%{transform:scale(.7)}60%{transform:scale(1.14)}100%{transform:scale(1)}}
+.ripple{position:absolute;z-index:-1;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;pointer-events:none;background:rgba(168,67,101,.2)}
+.summary dd.is-new,.summary .total b.is-new{animation:flash 1s var(--ease)}
+@keyframes flash{0%{opacity:.35}100%{opacity:1}}
+.confirm{position:relative}
+.petal-burst{position:absolute;left:50%;top:44px;width:0;height:0;pointer-events:none;z-index:2}
+.petal-burst i{position:absolute;left:-7px;top:-4px;width:14px;height:8px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;background:var(--c,var(--yellow-soft))}

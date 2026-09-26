@@ -143,7 +143,110 @@
     }
   });
 
+  /* ================= Booking ================= */
   BOB.page('booking', function (M) {
+    var gsap = M.gsap;
     pagehead(M);
+
+    // Panels slide in the direction of travel; the fields follow in a short cascade.
+    BOB.hooks.panelSwap = function (from, to, dir, commit) {
+      gsap.to(from, {
+        x: -40 * dir, opacity: 0, duration: 0.32, ease: 'power2.in',
+        onComplete: function () {
+          commit();
+          gsap.set(from, { clearProps: 'transform,opacity' });
+          var parts = to.querySelectorAll(':scope > *');
+          gsap.fromTo(to, { x: 40 * dir, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: 'expo.out', clearProps: 'transform' });
+          gsap.fromTo(parts, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out', stagger: 0.04, delay: 0.05, clearProps: 'transform' });
+          if (to.querySelector('.confirm')) confirmed(to.querySelector('.confirm'));
+        },
+      });
+    };
+
+    // Choosing a room: a ripple spreads from the pointer.
+    M.qsa('.choice').forEach(function (c) {
+      c.addEventListener('pointerdown', function (e) {
+        var r = c.getBoundingClientRect();
+        var dot = d.createElement('span');
+        dot.className = 'ripple';
+        dot.style.left = (e.clientX - r.left) + 'px';
+        dot.style.top = (e.clientY - r.top) + 'px';
+        c.appendChild(dot);
+        gsap.fromTo(dot, { scale: 0, opacity: 1 }, {
+          scale: Math.max(r.width, r.height) / 40, opacity: 0, duration: 0.9, ease: 'expo.out',
+          onComplete: function () { dot.remove(); },
+        });
+      });
+    });
+
+    // Summary: the estimated total counts to its new value; changed rows flash.
+    var total = d.getElementById('s-total');
+    if (total && window.MutationObserver) {
+      var fmt = function (n) { return '฿' + Math.round(n).toLocaleString('en-US'); };
+      var num = function (t) { return parseInt(t.replace(/[^\d]/g, ''), 10); };
+      var flash = function (el) { el.classList.remove('is-new'); void el.offsetWidth; el.classList.add('is-new'); };
+      var shown = num(total.textContent) || 0, written = null, count = null;
+      new MutationObserver(function () {
+        var text = total.textContent;
+        if (text === written) return; // the count's own frame
+        var target = num(text);
+        if (count) count.kill();
+        if (isNaN(target)) { shown = 0; return; }
+        flash(total);
+        var o = { v: shown };
+        count = gsap.to(o, {
+          v: target, duration: 0.9, ease: 'expo.out',
+          onUpdate: function () { shown = o.v; written = fmt(o.v); total.textContent = written; },
+          onComplete: function () { shown = target; written = fmt(target); total.textContent = written; },
+        });
+      }).observe(total, { childList: true, characterData: true, subtree: true });
+      M.qsa('.summary dd').forEach(function (dd) {
+        new MutationObserver(function () { flash(dd); }).observe(dd, { childList: true, characterData: true, subtree: true });
+      });
+    }
+
+    // Request confirmed: the check springs in, orchid petals burst, the reference
+    // scrambles into place.
+    function confirmed(box) {
+      var check = box.querySelector('.confirm__check');
+      var mark = check && check.querySelector('svg');
+      gsap.fromTo(check, { scale: 0 }, { scale: 1, duration: 0.9, ease: 'back.out(2.2)', delay: 0.1 });
+      if (mark) gsap.fromTo(mark, { scale: 0, rotation: -45 }, { scale: 1, rotation: 0, duration: 0.8, ease: 'back.out(2.6)', delay: 0.35 });
+      var burst = d.createElement('span');
+      burst.className = 'petal-burst';
+      burst.setAttribute('aria-hidden', 'true');
+      var colours = ['#E9C84A', '#EEE865', '#A84365', '#41A3BD', '#E5C89B'];
+      for (var i = 0; i < 16; i++) {
+        var p = d.createElement('i');
+        p.style.setProperty('--c', colours[i % colours.length]);
+        burst.appendChild(p);
+      }
+      box.appendChild(burst);
+      M.qsa('i', burst).forEach(function (p, i) {
+        var a = (i / 16) * Math.PI * 2 + Math.random() * 0.4, dist = 90 + Math.random() * 90;
+        gsap.timeline({ delay: 0.3 })
+          .fromTo(p, { x: 0, y: 0, rotation: 0, scale: 0.4, opacity: 1 }, {
+            x: Math.cos(a) * dist, y: Math.sin(a) * dist * 0.8, rotation: gsap.utils.random(-220, 220), scale: 1,
+            duration: 0.9, ease: 'expo.out',
+          })
+          .to(p, { y: '+=70', opacity: 0, rotation: '+=90', duration: 1.1, ease: 'power1.in' }, 0.7);
+      });
+      gsap.delayedCall(2.6, function () { burst.remove(); });
+
+      var ref = d.getElementById('confref');
+      if (!ref) return;
+      var final = ref.textContent, chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789', t = { p: 0 };
+      gsap.to(t, {
+        p: 1, duration: 1, ease: 'power2.out', delay: 0.45,
+        onUpdate: function () {
+          var keep = Math.floor(t.p * final.length), out = '';
+          for (var k = 0; k < final.length; k++) {
+            out += k < keep || final[k] === '-' ? final[k] : chars[Math.floor(Math.random() * chars.length)];
+          }
+          ref.textContent = out;
+        },
+        onComplete: function () { ref.textContent = final; },
+      });
+    }
   });
 })();
