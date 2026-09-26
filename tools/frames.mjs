@@ -64,7 +64,8 @@ if (opt('time', '')) {
   await sleep(+opt('wait', 1200));
   for (let i = 0; i < steps; i++) {
     const y = Math.round(from + ((to - from) * i) / Math.max(1, steps - 1));
-    await cdp.send('Runtime.evaluate', { expression: `window.scrollTo(0, ${y})` });
+    // instant: html.is-loaded turns on smooth scrolling, which would still be gliding at capture
+    await cdp.send('Runtime.evaluate', { expression: `window.scrollTo({ top: ${y}, behavior: 'instant' })` });
     await sleep(settle);
     const { data } = await cdp.send('Page.captureScreenshot', { format: 'png' });
     writeFileSync(join(out, `${pad(i)}-y${y}.png`), Buffer.from(data, 'base64'));
