@@ -67,8 +67,19 @@
     if (shiftMatch) doc.body.style.marginTop = '-' + parseInt(shiftMatch[1], 10) + 'px';
   }
   if (scrollMatch || shiftMatch) window.addEventListener('load', applyScroll);
+  window.addEventListener('load', function () { root.classList.add('is-loaded'); });
+
+  // Land on a #fragment instantly, before motion.js loads: a ScrollTrigger refresh that
+  // runs first records scroll 0, and the browser then abandons its own jump.
+  function landOnHash() {
+    if (location.hash.length < 2) return;
+    var t = null;
+    try { t = doc.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e) { return; }
+    if (t) t.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }
 
   ready(function () {
+    landOnHash();
     applyScroll();
     var y = doc.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();

@@ -242,14 +242,17 @@ async function run() {
   });
 
   await check('intro', async () => {
-    await b.goto(`${BASE}/?intro=1`, 2000);
+    if (!readFileSync(join(ROOT, 'index.html'), 'utf8').includes('class="intro"')) return 'no intro in the page yet (skipped)';
+    await b.goto(`${BASE}/?intro=1`, 300);
+    const started = await b.evaluate(`document.documentElement.classList.contains('intro-on') && !!document.querySelector('.intro')`);
+    if (!started) return failWith('?intro=1 did not start the intro');
+    await sleep(1900);
     const state = await b.evaluate(`(() => {
       const intro = document.querySelector('.intro');
-      if (!intro) return 'skip';
-      return intro.checkVisibility({ opacityProperty: true, visibilityProperty: true }) ? 'showing' : 'done';
+      const covering = intro && intro.checkVisibility({ opacityProperty: true, visibilityProperty: true });
+      return covering || document.documentElement.classList.contains('intro-on') ? 'showing' : 'done';
     })()`);
-    if (state === 'skip') return 'no intro in the page yet (skipped)';
-    return state === 'done' ? 'intro finished within 2s of load' : failWith('intro still covering the page 2s after load');
+    return state === 'done' ? 'intro plays and clears within ~2.2s of load' : failWith('intro still covering the page 2.2s after load');
   });
 
   b.close();

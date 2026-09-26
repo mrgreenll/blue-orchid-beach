@@ -214,6 +214,12 @@
     if (zoom) gsap.set(img, { scale: 1.22, transition: 'none' });
     return {
       play: function (delay) {
+        if (el.hasAttribute('data-arrived')) {
+          sheet.remove();
+          gsap.set(el, { opacity: 1 });
+          if (zoom) gsap.set(img, { clearProps: 'transform,transition' });
+          return;
+        }
         var tl = gsap.timeline({ delay: delay || 0, onComplete: function () { sheet.remove(); } });
         var top = { duration: 1, ease: 'expo.inOut' }, under = { duration: 1.1, ease: 'expo.inOut' };
         top[prop] = off;
@@ -424,6 +430,51 @@
     }
   }
 
+  /* ================= First-visit intro ================= */
+  M.playIntro = function () {
+    var intro = d.querySelector('.intro');
+    var finish = function () {
+      if (intro && intro.parentNode) intro.remove();
+      h.classList.remove('intro-on');
+    };
+    if (!intro) { finish(); M.settleMedia(); M.startEntrance(); return; }
+    try { sessionStorage.setItem('bob-intro', '1'); } catch (e) { /* private mode: replays */ }
+    BOB.lock();
+    var petals = qsa('.intro .petal');
+    gsap.set(petals, { opacity: 1, scale: 0, rotation: -40, svgOrigin: '24 24' });
+    var tl = gsap.timeline({ onComplete: finish });
+    tl.to(petals, { scale: 1, rotation: 0, duration: 0.7, ease: 'back.out(1.7)', stagger: 0.04 }, 0)
+      .fromTo('.intro__wipe', { xPercent: -101, x: 0 }, { xPercent: 0, duration: 0.6, ease: 'expo.inOut', stagger: 0.1 }, 0.18)
+      .fromTo('.intro__hold', { xPercent: 101, x: 0 }, { xPercent: 0, duration: 0.6, ease: 'expo.inOut', stagger: 0.1 }, 0.18)
+      .add(BOB.unlock, 0.9)
+      .to('.intro__inner', { yPercent: -16, opacity: 0, duration: 0.6, ease: 'expo.in' }, 0.88)
+      .to(intro, { yPercent: -100, duration: 0.8, ease: 'expo.inOut' }, 0.9)
+      .add(function () { M.settleMedia(); M.startEntrance(); }, 1.1);
+    // A click or key press hurries it along.
+    var skip = function () {
+      tl.timeScale(3);
+      d.removeEventListener('pointerdown', skip);
+      d.removeEventListener('keydown', skip);
+    };
+    d.addEventListener('pointerdown', skip);
+    d.addEventListener('keydown', skip);
+  };
+
+  /* ================= Page transitions: hand a room photo to rooms.html =================
+     The morph itself is CSS (@view-transition) plus the pagereveal handler in <head>;
+     this names the clicked card's photo so the browser can pair it with the suite. */
+  function roomHandoff() {
+    if (!('startViewTransition' in d)) return;
+    d.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('.room-card a[href*="rooms.html#"]');
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+      var img = a.closest('.room-card').querySelector('img[data-vt]');
+      if (!img) return;
+      img.style.viewTransitionName = 'room-media';
+      try { sessionStorage.setItem('bob-vt', img.getAttribute('data-vt')); } catch (x) { /* no morph */ }
+    });
+  }
+
   /* ================= Boot ================= */
   var booted = false;
   function boot() {
@@ -438,18 +489,25 @@
     chromeCursor();
     chromeMagnetic();
     chromeFooter();
+    roomHandoff();
     M.chrome.forEach(function (fn) { fn(M); });
     M.entrance = buildEntrance();
 
     var intro = h.classList.contains('intro-on') && typeof M.playIntro === 'function';
     if (!intro) M.settleMedia();
-    var go = function () {
-      if (intro) M.playIntro();
-      else gsap.delayedCall(h.classList.contains('vt-arrive') ? 0.35 : 0.02, M.startEntrance);
-    };
-    // Wait (briefly) for the web fonts so the first split measures real line breaks.
-    var fontsReady = d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve();
-    Promise.race([fontsReady, new Promise(function (r) { setTimeout(r, 450); })]).then(go);
+    // Landing mid-page (a #fragment, a restored scroll): the page head's entrance is out of
+    // sight, so on-screen reveals shouldn't wait for it.
+    var head = d.querySelector('.hero, .pagehead');
+    if (head && head.getBoundingClientRect().bottom < 80) M.release();
+    // The intro has no text, so it starts at once; fonts load while the orchid blooms.
+    // Without it, wait (briefly) for the web fonts so the first split measures real lines.
+    if (intro) M.playIntro();
+    else {
+      var fontsReady = d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve();
+      Promise.race([fontsReady, new Promise(function (r) { setTimeout(r, 450); })]).then(function () {
+        gsap.delayedCall(h.classList.contains('vt-arrive') ? 0.35 : 0.02, M.startEntrance);
+      });
+    }
 
     w.addEventListener('load', function () { ScrollTrigger.refresh(); });
     if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { ScrollTrigger.refresh(); });

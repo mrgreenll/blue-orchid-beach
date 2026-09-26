@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <script>(function(d,w){var h=d.documentElement,q=location.search,c=['js'];if(/[?&]still/.test(q))c.push('still');else if(!(w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches)){c.push('motion');var s=null;try{s=sessionStorage.getItem('bob-intro')}catch(e){}if((!s&&!navigator.webdriver&&!/HeadlessChrome/.test(navigator.userAgent))||/[?&]intro=1/.test(q))c.push('intro-on');w.__bobFail=function(){h.classList.remove('motion','intro-on')};setTimeout(function(){if(!h.classList.contains('motion-live'))w.__bobFail()},3500)}h.className+=(h.className?' ':'')+c.join(' ')})(document,window);</script>
+<script>(function(d,w){function clear(keep){[].forEach.call(d.querySelectorAll('img[style*="view-transition-name"]'),function(i){if(i!==keep)i.style.viewTransitionName=''})}w.addEventListener('pagereveal',function(e){var h=d.documentElement;if(!e.viewTransition){clear();return}h.classList.add('vt-arrive');if(w.navigation&&navigation.activation&&navigation.activation.navigationType==='traverse')h.classList.add('vt-back');var id=null;try{id=sessionStorage.getItem('bob-vt');sessionStorage.removeItem('bob-vt')}catch(x){}var img=id&&d.querySelector('#'+(w.CSS&&CSS.escape?CSS.escape(id):id)+' .suite__media img');if(location.hash.length>1){var at=d.getElementById(decodeURIComponent(location.hash.slice(1)));if(at)at.scrollIntoView({block:'start',behavior:'instant'})}clear(img);if(img){img.style.viewTransitionName='room-media';img.parentNode.setAttribute('data-arrived','');[].forEach.call(img.parentNode.querySelectorAll('.curtain'),function(c){c.remove()});img.style.transform=''}e.viewTransition.finished.finally(function(){h.classList.remove('vt-arrive','vt-back');if(img)img.style.viewTransitionName=''})});w.addEventListener('pageshow',function(e){if(e.persisted)clear()})})(document,window);</script>
 <title>Book a Stay — Blue Orchid Beach, Krabi</title>
 <meta name="description" content="Reserve your stay at Blue Orchid Beach, Krabi. Choose your dates, pick a sea-view room and tell us a little about your trip.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -16,6 +17,25 @@
 <script>addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&!t.closest('.lightbox')){t.style.visibility='hidden';if(t.parentElement)t.parentElement.classList.add('media-fallback');}},true);</script>
 </head>
 <body data-page="booking">
+<div class="intro" aria-hidden="true">
+  <div class="intro__inner">
+    <svg class="intro__orchid" viewBox="0 0 48 48">
+      <defs><linearGradient id="orchidPetal" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#CFC73A"/><stop offset="1" stop-color="#EEE865"/></linearGradient></defs>
+      <g transform="rotate(130 24 24)"><path class="petal sepal" d="M24 24C21.2 18.6 20.6 11 24 4.5c3.4 6.5 2.8 14.1 0 19.5Z"/></g>
+      <g transform="rotate(230 24 24)"><path class="petal sepal" d="M24 24C21.2 18.6 20.6 11 24 4.5c3.4 6.5 2.8 14.1 0 19.5Z"/></g>
+      <g><path class="petal sepal" d="M24 24C21.2 18.6 20.6 11 24 4.5c3.4 6.5 2.8 14.1 0 19.5Z"/></g>
+      <g transform="rotate(62 24 24)"><path class="petal" d="M24 24c-5.4-4.1-7-12.6-.9-17.4.5-.3 1.3-.3 1.8 0 6.1 4.8 4.5 13.3-.9 17.4Z"/></g>
+      <g transform="rotate(-62 24 24)"><path class="petal" d="M24 24c-5.4-4.1-7-12.6-.9-17.4.5-.3 1.3-.3 1.8 0 6.1 4.8 4.5 13.3-.9 17.4Z"/></g>
+      <path class="petal lip" d="M24 24c-3.6 2.4-4.4 8.4 0 12.6 4.4-4.2 3.6-10.2 0-12.6Z"/>
+      <circle class="petal column" cx="24" cy="24" r="2.3"/>
+    </svg>
+    <div class="intro__mark">
+      <div class="intro__band" style="--top:0%;--h:34.5%"><div class="intro__wipe"><div class="intro__hold"><img src="brand_assets/logos/logo-exact-stacked-white.svg" alt="" width="3045" height="2112"></div></div></div>
+      <div class="intro__band" style="--top:34.5%;--h:27.5%"><div class="intro__wipe"><div class="intro__hold"><img src="brand_assets/logos/logo-exact-stacked-white.svg" alt="" width="3045" height="2112"></div></div></div>
+      <div class="intro__band" style="--top:62%;--h:38%"><div class="intro__wipe"><div class="intro__hold"><img src="brand_assets/logos/logo-exact-stacked-white.svg" alt="" width="3045" height="2112"></div></div></div>
+    </div>
+  </div>
+</div>
 <div class="sky" aria-hidden="true"><i class="sky__l sky__l--dawn"></i><i class="sky__l sky__l--noon"></i><i class="sky__l sky__l--gold"></i><i class="sky__l sky__l--dusk"></i></div>
 
 <!-- ============ NAV ============ -->
