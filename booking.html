@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<script>(function(d,w){var h=d.documentElement,q=location.search,c=['js'];if(/[?&]still/.test(q))c.push('still');else if(!(w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches)){c.push('motion');var s=null;try{s=sessionStorage.getItem('bob-intro')}catch(e){}if((!s&&!navigator.webdriver&&!/HeadlessChrome/.test(navigator.userAgent))||/[?&]intro=1/.test(q))c.push('intro-on');w.__bobFail=function(){h.classList.remove('motion','intro-on')};setTimeout(function(){if(!h.classList.contains('motion-live'))w.__bobFail()},3500)}h.className+=(h.className?' ':'')+c.join(' ')})(document,window);</script>
 <title>Book a Stay — Blue Orchid Beach, Krabi</title>
 <meta name="description" content="Reserve your stay at Blue Orchid Beach, Krabi. Choose your dates, pick a sea-view room and tell us a little about your trip.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -11,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..600&family=Raleway:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/motion.css">
 <script>addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&!t.closest('.lightbox')){t.style.visibility='hidden';if(t.parentElement)t.parentElement.classList.add('media-fallback');}},true);</script>
 </head>
 <body data-page="booking">
@@ -42,23 +44,23 @@
 
 <!-- ============ PAGE HEADER ============ -->
 <header class="pagehead" style="min-height:48vh">
-  <div class="pagehead__media"><img src="assets/img/pool-elevated-seaview-01.webp" alt="Elevated pool terrace overlooking the Andaman Sea" fetchpriority="high"></div>
+  <div class="pagehead__media"><img width="1200" height="900" src="assets/img/pool-elevated-seaview-01.webp" alt="Elevated pool terrace overlooking the Andaman Sea" fetchpriority="high"></div>
   <div class="pagehead__scrim"></div>
   <div class="pagehead__inner">
-    <nav class="crumbs reveal" aria-label="Breadcrumb">
+    <nav data-m="enter" class="crumbs" aria-label="Breadcrumb">
       <a href="index.html">Home</a>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
       <span>Book a Stay</span>
     </nav>
-    <h1 class="reveal" style="--rd:.06s">Reserve your escape</h1>
-    <p class="reveal" style="--rd:.12s">Four quick steps. Best rates are always booked direct.</p>
+    <h1 data-m="enter">Reserve your escape</h1>
+    <p data-m="enter">Four quick steps. Best rates are always booked direct.</p>
   </div>
 </header>
 
 <!-- ============ BOOKING ============ -->
 <section class="section">
   <div class="container">
-    <ol class="stepper reveal" aria-label="Booking steps">
+    <ol data-m="kids" class="stepper" aria-label="Booking steps">
       <li class="active" aria-current="step"><span class="dot"><span class="dot__n">1</span><svg class="dot__ok" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12.5 4 4 8-9"/></svg></span><span class="t">Stay</span><span class="bar" aria-hidden="true"><i></i></span></li>
       <li><span class="dot"><span class="dot__n">2</span><svg class="dot__ok" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12.5 4 4 8-9"/></svg></span><span class="t">Room</span><span class="bar" aria-hidden="true"><i></i></span></li>
       <li><span class="dot"><span class="dot__n">3</span><svg class="dot__ok" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12.5 4 4 8-9"/></svg></span><span class="t">Details</span><span class="bar" aria-hidden="true"><i></i></span></li>
@@ -108,19 +110,19 @@
           <h3 style="margin-bottom:18px">Pick your room</h3>
           <div class="book-choice">
             <label class="choice" data-room="superior-garden" data-rate="1300" data-title="Superior Room, Garden View">
-              <img src="assets/img/room-yellow-feature-01.webp" alt="Superior Garden View room">
+              <img width="1200" height="900" src="assets/img/room-yellow-feature-01.webp" alt="Superior Garden View room">
               <div><h4>Superior Room, Garden View</h4><div class="meta">Queen bed · Garden view · No balcony</div></div>
               <div class="pr">฿1,300<br><small style="color:var(--muted)">/ night</small></div>
               <input type="radio" name="room" value="superior-garden">
             </label>
             <label class="choice" data-room="superior-sea-balcony" data-rate="1900" data-title="Superior Sea View, Balcony">
-              <img src="assets/img/room-balcony-seaview-01.webp" alt="Superior Sea View room with balcony">
+              <img width="1200" height="900" src="assets/img/room-balcony-seaview-01.webp" alt="Superior Sea View room with balcony">
               <div><h4>Superior Sea View, Balcony</h4><div class="meta">Private balcony · 2nd floor · Sea view</div></div>
               <div class="pr">฿1,900<br><small style="color:var(--muted)">/ night</small></div>
               <input type="radio" name="room" value="superior-sea-balcony">
             </label>
             <label class="choice" data-room="deluxe-pool-view" data-rate="3400" data-title="Deluxe Room, Pool View">
-              <img src="assets/img/room-poolview-curtains-01.webp" alt="Deluxe Room with pool view">
+              <img width="1600" height="1200" src="assets/img/room-poolview-curtains-01.webp" alt="Deluxe Room with pool view">
               <div><h4>Deluxe Room, Pool View</h4><div class="meta">King bed · Pool &amp; sea view · Terrace</div></div>
               <div class="pr">฿3,400<br><small style="color:var(--muted)">/ night</small></div>
               <input type="radio" name="room" value="deluxe-pool-view">
@@ -178,7 +180,7 @@
       </form>
 
       <!-- SUMMARY -->
-      <aside class="summary reveal" aria-label="Booking summary">
+      <aside data-m="up" class="summary" aria-label="Booking summary">
         <h3>Your stay</h3>
         <p class="sub">Blue Orchid Beach · Krabi</p>
         <dl>
@@ -200,7 +202,7 @@
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach">
+        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach" width="355" height="30" loading="lazy">
         <p>A relaxed tropical-luxury beachfront retreat at Ao Nam Mao, Krabi — where turquoise pools meet the karst horizon and the yellow orchid greets every guest.</p>
         <span class="sha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>SHA Certified</span>
       </div>
@@ -251,7 +253,13 @@
   <span class="sundial__label" aria-hidden="true"><span>Back to top</span></span>
 </button>
 
-<script src="assets/main.js"></script>
+<script src="assets/main.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+<script src="assets/motion.js" defer></script>
+<script src="assets/motion-pages.js" defer></script>
   <div style="background:#111;color:#bbb;font:400 13px/1.6 system-ui,sans-serif;padding:14px 20px;text-align:center">Unofficial concept. Not affiliated with or endorsed by the business.</div>
 </body>
 </html>

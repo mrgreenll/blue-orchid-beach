@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<script>(function(d,w){var h=d.documentElement,q=location.search,c=['js'];if(/[?&]still/.test(q))c.push('still');else if(!(w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches)){c.push('motion');var s=null;try{s=sessionStorage.getItem('bob-intro')}catch(e){}if((!s&&!navigator.webdriver&&!/HeadlessChrome/.test(navigator.userAgent))||/[?&]intro=1/.test(q))c.push('intro-on');w.__bobFail=function(){h.classList.remove('motion','intro-on')};setTimeout(function(){if(!h.classList.contains('motion-live'))w.__bobFail()},3500)}h.className+=(h.className?' ':'')+c.join(' ')})(document,window);</script>
 <title>Gallery &amp; Location — Blue Orchid Beach, Krabi</title>
 <meta name="description" content="Explore Blue Orchid Beach in pictures — pools, beachfront, rooms, dining and the orchid signature — and find us at Ao Nam Mao on Thailand's Andaman coast.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -11,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..600&family=Raleway:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/motion.css">
 <script>addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&!t.closest('.lightbox')){t.style.visibility='hidden';if(t.parentElement)t.parentElement.classList.add('media-fallback');}},true);</script>
 </head>
 <body data-page="gallery">
@@ -42,29 +44,29 @@
 
 <!-- ============ PAGE HEADER ============ -->
 <header class="pagehead">
-  <div class="pagehead__media"><img src="assets/img/pool-walkway-palms-01.webp" alt="Pool walkway lined with palms leading toward the sea" fetchpriority="high"></div>
+  <div class="pagehead__media"><img width="1800" height="1350" src="assets/img/pool-walkway-palms-01.webp" alt="Pool walkway lined with palms leading toward the sea" fetchpriority="high"></div>
   <div class="pagehead__scrim"></div>
   <div class="pagehead__inner">
-    <nav class="crumbs reveal" aria-label="Breadcrumb">
+    <nav data-m="enter" class="crumbs" aria-label="Breadcrumb">
       <a href="index.html">Home</a>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
       <span>Gallery &amp; Location</span>
     </nav>
-    <h1 class="reveal" style="--rd:.06s">Gallery &amp; Location</h1>
-    <p class="reveal" style="--rd:.12s">A wander through Blue Orchid Beach — and where to find us on the Andaman coast.</p>
+    <h1 data-m="enter">Gallery &amp; Location</h1>
+    <p data-m="enter">A wander through Blue Orchid Beach — and where to find us on the Andaman coast.</p>
   </div>
 </header>
 
 <!-- ============ GALLERY ============ -->
 <section class="section">
   <div class="container">
-    <div class="section-head center reveal">
-      <span class="kicker kicker--center">The Gallery</span>
-      <h2>Light, water &amp; the orchid</h2>
-      <p class="muted">Tap any photo to view it larger. Filter by what you’d like to see.</p>
+    <div class="section-head center">
+      <span data-m="kicker" class="kicker kicker--center">The Gallery</span>
+      <h2 data-m="lines">Light, water &amp; the orchid</h2>
+      <p data-m="up" class="muted">Tap any photo to view it larger. Filter by what you’d like to see.</p>
     </div>
 
-    <div class="filterbar reveal" role="group" aria-label="Filter gallery">
+    <div data-m="kids" class="filterbar" role="group" aria-label="Filter gallery">
       <button class="filter is-active" data-filter="all">All</button>
       <button class="filter" data-filter="pools">Pools</button>
       <button class="filter" data-filter="beach">Beach</button>
@@ -73,26 +75,26 @@
       <button class="filter" data-filter="orchid">Orchids</button>
     </div>
 
-    <div class="masonry reveal">
-      <button class="g-item" type="button" data-cat="pools" data-title="Golden-hour infinity pool fringed with palms"><img src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Golden-hour infinity pool</span></button>
-      <button class="g-item" type="button" data-cat="pools" data-title="Palm-lined pool walkway to the sea"><img src="assets/img/pool-walkway-palms-01.webp" alt="Palm-lined pool walkway leading to the sea" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>To the water</span></button>
-      <button class="g-item" type="button" data-cat="rooms" data-title="Room opening to the infinity pool and sea"><img src="assets/img/room-poolview-curtains-01.webp" alt="Room opening to the infinity pool and sea" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Sea-view sheers</span></button>
-      <button class="g-item" type="button" data-cat="dining" data-title="Live-edge dining deck strung with lights at golden hour"><img src="assets/img/restaurant-deck-goldenhour-01.webp" alt="Live-edge dining deck strung with lights at golden hour" loading="lazy" decoding="async"><span class="g-item__cap"><small>Dining</small>The timber deck</span></button>
-      <button class="g-item" type="button" data-cat="orchid" data-title="The yellow orchid — our namesake bloom"><img src="assets/img/orchid-yellow-bloom-01-THUMBONLY.webp" alt="Yellow orchid bloom, the resort's namesake" loading="lazy" decoding="async"><span class="g-item__cap"><small>Orchid</small>Our namesake</span></button>
-      <button class="g-item" type="button" data-cat="pools" data-title="Green-lit pool tiles glowing at dusk"><img src="assets/img/pool-dusk-lit-01.webp" alt="Green-lit pool tiles glowing at dusk" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Aglow at dusk</span></button>
-      <button class="g-item" type="button" data-cat="beach" data-title="Frangipani over the turquoise-sea timber deck"><img src="assets/img/beach-deck-seaview-01.webp" alt="Frangipani over the turquoise-sea timber deck" loading="lazy" decoding="async"><span class="g-item__cap"><small>Beach</small>Sea-view deck</span></button>
-      <button class="g-item" type="button" data-cat="rooms" data-title="Signature yellow feature wall"><img src="assets/img/room-yellow-feature-01.webp" alt="Signature yellow feature wall with bean bag" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Signature yellow</span></button>
-      <button class="g-item" type="button" data-cat="dining" data-title="Fresh fruit plate and just-pressed juices"><img src="assets/img/food-fruit-juice-01.webp" alt="Fresh fruit plate and just-pressed juices" loading="lazy" decoding="async"><span class="g-item__cap"><small>Dining</small>Fresh &amp; bright</span></button>
-      <button class="g-item" type="button" data-cat="pools" data-title="Dusk pool with a lit feature wall"><img src="assets/img/pool-sunset-litwall-01.webp" alt="Dusk pool with a lit feature wall and reflections" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Lit at dusk</span></button>
-      <button class="g-item" type="button" data-cat="rooms" data-title="Honeymoon turndown with petals and towel-art"><img src="assets/img/room-honeymoon-decor-01.webp" alt="Honeymoon turndown with petals and towel-art" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Honeymoon</span></button>
-      <button class="g-item" type="button" data-cat="beach" data-title="Signature sunset deck with hanging chair"><img src="assets/img/beachfront-deck-sunset-01.webp" alt="Signature sunset deck with hanging egg-chair" loading="lazy" decoding="async"><span class="g-item__cap"><small>Beach</small>Sunset deck</span></button>
-      <button class="g-item" type="button" data-cat="pools" data-title="Elevated pool above the turquoise sea"><img src="assets/img/pool-elevated-seaview-01.webp" alt="Elevated pool above the turquoise sea" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Elevated view</span></button>
-      <button class="g-item" type="button" data-cat="rooms" data-title="Grey-marble vessel sink"><img src="assets/img/bathroom-marble-vessel-01.webp" alt="Grey-marble vessel sink in the bathroom" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Marble bath</span></button>
-      <button class="g-item" type="button" data-cat="orchid" data-title="Reception desk dressed with orchids"><img src="assets/img/lobby-reception-orchids-01.webp" alt="Stone reception desk dressed with orchids" loading="lazy" decoding="async"><span class="g-item__cap"><small>Orchid</small>Welcome desk</span></button>
-      <button class="g-item" type="button" data-cat="dining" data-title="Breakfast plate — eggs, ham and salad"><img src="assets/img/food-breakfast-ham-01.webp" alt="Breakfast plate with fried eggs, ham, sausage and salad" loading="lazy" decoding="async"><span class="g-item__cap"><small>Dining</small>Breakfast</span></button>
-      <button class="g-item" type="button" data-cat="beach" data-title="The hanging Blue Orchid Beach sign at sunset"><img src="assets/img/sign-hanging-sunset-01.webp" alt="The hanging Blue Orchid Beach sign at sunset" loading="lazy" decoding="async"><span class="g-item__cap"><small>Beach</small>At sunset</span></button>
-      <button class="g-item" type="button" data-cat="rooms" data-title="Twin canopy beds for families"><img src="assets/img/room-twin-canopy-01.webp" alt="Twin canopy beds, ideal for families" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Family canopy</span></button>
-      <button class="g-item" type="button" data-cat="pools" data-title="Poolside lounge seating"><img src="assets/img/poolside-lounge-seating-01.webp" alt="Poolside lounge seating" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Poolside lounge</span></button>
+    <div data-m="batch" class="masonry">
+      <button class="g-item" type="button" data-cat="pools" data-title="Golden-hour infinity pool fringed with palms"><img width="1600" height="1200" src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Golden-hour infinity pool</span></button>
+      <button class="g-item" type="button" data-cat="pools" data-title="Palm-lined pool walkway to the sea"><img width="1800" height="1350" src="assets/img/pool-walkway-palms-01.webp" alt="Palm-lined pool walkway leading to the sea" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>To the water</span></button>
+      <button class="g-item" type="button" data-cat="rooms" data-title="Room opening to the infinity pool and sea"><img width="1600" height="1200" src="assets/img/room-poolview-curtains-01.webp" alt="Room opening to the infinity pool and sea" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Sea-view sheers</span></button>
+      <button class="g-item" type="button" data-cat="dining" data-title="Live-edge dining deck strung with lights at golden hour"><img width="1600" height="1200" src="assets/img/restaurant-deck-goldenhour-01.webp" alt="Live-edge dining deck strung with lights at golden hour" loading="lazy" decoding="async"><span class="g-item__cap"><small>Dining</small>The timber deck</span></button>
+      <button class="g-item" type="button" data-cat="orchid" data-title="The yellow orchid — our namesake bloom"><img width="675" height="900" src="assets/img/orchid-yellow-bloom-01-THUMBONLY.webp" alt="Yellow orchid bloom, the resort's namesake" loading="lazy" decoding="async"><span class="g-item__cap"><small>Orchid</small>Our namesake</span></button>
+      <button class="g-item" type="button" data-cat="pools" data-title="Green-lit pool tiles glowing at dusk"><img width="1200" height="900" src="assets/img/pool-dusk-lit-01.webp" alt="Green-lit pool tiles glowing at dusk" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Aglow at dusk</span></button>
+      <button class="g-item" type="button" data-cat="beach" data-title="Frangipani over the turquoise-sea timber deck"><img width="1600" height="1200" src="assets/img/beach-deck-seaview-01.webp" alt="Frangipani over the turquoise-sea timber deck" loading="lazy" decoding="async"><span class="g-item__cap"><small>Beach</small>Sea-view deck</span></button>
+      <button class="g-item" type="button" data-cat="rooms" data-title="Signature yellow feature wall"><img width="1200" height="900" src="assets/img/room-yellow-feature-01.webp" alt="Signature yellow feature wall with bean bag" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Signature yellow</span></button>
+      <button class="g-item" type="button" data-cat="dining" data-title="Fresh fruit plate and just-pressed juices"><img width="1477" height="1108" src="assets/img/food-fruit-juice-01.webp" alt="Fresh fruit plate and just-pressed juices" loading="lazy" decoding="async"><span class="g-item__cap"><small>Dining</small>Fresh &amp; bright</span></button>
+      <button class="g-item" type="button" data-cat="pools" data-title="Dusk pool with a lit feature wall"><img width="1600" height="1200" src="assets/img/pool-sunset-litwall-01.webp" alt="Dusk pool with a lit feature wall and reflections" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Lit at dusk</span></button>
+      <button class="g-item" type="button" data-cat="rooms" data-title="Honeymoon turndown with petals and towel-art"><img width="1200" height="900" src="assets/img/room-honeymoon-decor-01.webp" alt="Honeymoon turndown with petals and towel-art" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Honeymoon</span></button>
+      <button class="g-item" type="button" data-cat="beach" data-title="Signature sunset deck with hanging chair"><img width="1600" height="1200" src="assets/img/beachfront-deck-sunset-01.webp" alt="Signature sunset deck with hanging egg-chair" loading="lazy" decoding="async"><span class="g-item__cap"><small>Beach</small>Sunset deck</span></button>
+      <button class="g-item" type="button" data-cat="pools" data-title="Elevated pool above the turquoise sea"><img width="1200" height="900" src="assets/img/pool-elevated-seaview-01.webp" alt="Elevated pool above the turquoise sea" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Elevated view</span></button>
+      <button class="g-item" type="button" data-cat="rooms" data-title="Grey-marble vessel sink"><img width="1600" height="1200" src="assets/img/bathroom-marble-vessel-01.webp" alt="Grey-marble vessel sink in the bathroom" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Marble bath</span></button>
+      <button class="g-item" type="button" data-cat="orchid" data-title="Reception desk dressed with orchids"><img width="1200" height="900" src="assets/img/lobby-reception-orchids-01.webp" alt="Stone reception desk dressed with orchids" loading="lazy" decoding="async"><span class="g-item__cap"><small>Orchid</small>Welcome desk</span></button>
+      <button class="g-item" type="button" data-cat="dining" data-title="Breakfast plate — eggs, ham and salad"><img width="1108" height="1477" src="assets/img/food-breakfast-ham-01.webp" alt="Breakfast plate with fried eggs, ham, sausage and salad" loading="lazy" decoding="async"><span class="g-item__cap"><small>Dining</small>Breakfast</span></button>
+      <button class="g-item" type="button" data-cat="beach" data-title="The hanging Blue Orchid Beach sign at sunset"><img width="1600" height="1200" src="assets/img/sign-hanging-sunset-01.webp" alt="The hanging Blue Orchid Beach sign at sunset" loading="lazy" decoding="async"><span class="g-item__cap"><small>Beach</small>At sunset</span></button>
+      <button class="g-item" type="button" data-cat="rooms" data-title="Twin canopy beds for families"><img width="1200" height="900" src="assets/img/room-twin-canopy-01.webp" alt="Twin canopy beds, ideal for families" loading="lazy" decoding="async"><span class="g-item__cap"><small>Rooms</small>Family canopy</span></button>
+      <button class="g-item" type="button" data-cat="pools" data-title="Poolside lounge seating"><img width="1200" height="900" src="assets/img/poolside-lounge-seating-01.webp" alt="Poolside lounge seating" loading="lazy" decoding="async"><span class="g-item__cap"><small>Pools</small>Poolside lounge</span></button>
     </div>
   </div>
 </section>
@@ -100,17 +102,17 @@
 <!-- ============ LOCATION ============ -->
 <section class="section bg-paper2" id="location">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">The Location</span>
-      <h2>At the foot of the Krabi karsts</h2>
-      <p class="muted">Blue Orchid Beach sits on the quiet shore of Ao Nam Mao, on Thailand’s Andaman coast — between calm water and dramatic limestone cliffs, minutes from the longtail piers to Railay and Ao Nang.</p>
+    <div class="section-head">
+      <span data-m="kicker" class="kicker">The Location</span>
+      <h2 data-m="lines">At the foot of the Krabi karsts</h2>
+      <p data-m="up" class="muted">Blue Orchid Beach sits on the quiet shore of Ao Nam Mao, on Thailand’s Andaman coast — between calm water and dramatic limestone cliffs, minutes from the longtail piers to Railay and Ao Nang.</p>
     </div>
     <div class="locrow">
-      <div class="locrow__media reveal">
-        <img src="assets/img/scenery-karst-mist-01.webp" alt="Misty Krabi limestone karsts rising from the sea with longtail boats" loading="lazy" decoding="async">
+      <div data-m="curtain" class="locrow__media">
+        <img width="1477" height="1108" src="assets/img/scenery-karst-mist-01.webp" alt="Misty Krabi limestone karsts rising from the sea with longtail boats" loading="lazy" decoding="async">
       </div>
-      <div class="reveal" style="--rd:.1s">
-        <div class="loc-grid" style="grid-template-columns:1fr">
+      <div>
+        <div data-m="kids" class="loc-grid" style="grid-template-columns:1fr">
           <div class="loccard">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             <div><h4>Address</h4><p>Blue Orchid Beach, Ao Nam Mao,<br>Krabi 81000, Thailand</p></div>
@@ -124,12 +126,12 @@
             <div><h4>Nearby</h4><p>Longtail boats to Railay &amp; Ao Nang; close to the Ao Nam Mao pier and Thara Park.</p></div>
           </div>
         </div>
-        <a class="btn btn--ghost mt-m" href="https://www.google.com/maps/search/?api=1&query=Blue+Orchid+Beach+Ao+Nam+Mao+Krabi" target="_blank" rel="noopener">Open in Google Maps
+        <a data-m="up" class="btn btn--ghost mt-m" href="https://www.google.com/maps/search/?api=1&query=Blue+Orchid+Beach+Ao+Nam+Mao+Krabi" target="_blank" rel="noopener">Open in Google Maps
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       </div>
     </div>
 
-    <div class="locmap reveal" style="margin-top:clamp(28px,4vw,48px)">
+    <div data-m="curtain" class="locmap" style="margin-top:clamp(28px,4vw,48px)">
       <div class="locmap__fallback" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
         <strong>Blue Orchid Beach</strong>
@@ -144,13 +146,13 @@
 <section class="section" id="contact">
   <div class="container">
     <div class="locrow" style="grid-template-columns:1fr">
-      <div class="section-head center reveal" style="margin-inline:auto">
-        <span class="kicker kicker--center">Say hello</span>
-        <h2>Plan your stay with us</h2>
-        <p class="muted">Questions about rooms, transfers or a special occasion? Reach out — we’re happy to help arrange the details.</p>
+      <div class="section-head center" style="margin-inline:auto">
+        <span data-m="kicker" class="kicker kicker--center">Say hello</span>
+        <h2 data-m="lines">Plan your stay with us</h2>
+        <p data-m="up" class="muted">Questions about rooms, transfers or a special occasion? Reach out — we’re happy to help arrange the details.</p>
       </div>
     </div>
-    <div class="grid grid-3 reveal" style="gap:18px;max-width:980px;margin-inline:auto">
+    <div data-m="kids" class="grid grid-3" style="gap:18px;max-width:980px;margin-inline:auto">
       <a class="loccard" href="tel:+66945795168">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
         <div><h4>Call / WhatsApp</h4><p>+66 94 579 5168<br>+66 75 656 333</p></div>
@@ -164,7 +166,7 @@
         <div><h4>Reception</h4><p>Check-in 2:00 pm<br>Check-out 12:00 pm</p></div>
       </div>
     </div>
-    <div class="text-center mt-l reveal">
+    <div data-m="up" class="text-center mt-l">
       <a class="btn" href="booking.html">Start a booking
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -176,7 +178,7 @@
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach">
+        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach" width="355" height="30" loading="lazy">
         <p>A relaxed tropical-luxury beachfront retreat at Ao Nam Mao, Krabi — where turquoise pools meet the karst horizon and the yellow orchid greets every guest.</p>
         <span class="sha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>SHA Certified</span>
       </div>
@@ -239,7 +241,14 @@
   </figure>
 </div>
 
-<script src="assets/main.js"></script>
+<script src="assets/main.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Flip.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+<script src="assets/motion.js" defer></script>
+<script src="assets/motion-pages.js" defer></script>
   <div style="background:#111;color:#bbb;font:400 13px/1.6 system-ui,sans-serif;padding:14px 20px;text-align:center">Unofficial concept. Not affiliated with or endorsed by the business.</div>
 </body>
 </html>

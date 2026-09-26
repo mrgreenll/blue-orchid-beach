@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<script>(function(d,w){var h=d.documentElement,q=location.search,c=['js'];if(/[?&]still/.test(q))c.push('still');else if(!(w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches)){c.push('motion');var s=null;try{s=sessionStorage.getItem('bob-intro')}catch(e){}if((!s&&!navigator.webdriver&&!/HeadlessChrome/.test(navigator.userAgent))||/[?&]intro=1/.test(q))c.push('intro-on');w.__bobFail=function(){h.classList.remove('motion','intro-on')};setTimeout(function(){if(!h.classList.contains('motion-live'))w.__bobFail()},3500)}h.className+=(h.className?' ':'')+c.join(' ')})(document,window);</script>
 <title>Blue Orchid Beach — Wellness Resort · Krabi, Thailand</title>
 <meta name="description" content="Sun-warmed serenity, framed by the sea. A relaxed tropical-luxury beachfront resort at Ao Nam Mao, Krabi — turquoise infinity pools, golden-hour decks and the yellow orchid that greets every guest.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -11,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..600&family=Raleway:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/motion.css">
 <script>addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&!t.closest('.lightbox')){t.style.visibility='hidden';if(t.parentElement)t.parentElement.classList.add('media-fallback');}},true);</script>
 </head>
 <body data-page="home">
@@ -42,25 +44,25 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="hero__media"><img class="kenburns" src="assets/img/hero.webp" alt="Aerial view of Blue Orchid Beach — pool, beach and the turquoise Andaman Sea" fetchpriority="high"></div>
+  <div class="hero__media"><img class="kenburns" width="1201" height="900" src="assets/img/hero.webp" alt="Aerial view of Blue Orchid Beach — pool, beach and the turquoise Andaman Sea" fetchpriority="high"></div>
   <div class="hero__scrim"></div>
   <div class="hero__inner">
-    <span class="kicker kicker--light reveal">Ao Nam Mao · Krabi, Thailand</span>
-    <h1 class="hero__tag reveal" style="--rd:.08s">Bloom by the Andaman Sea.</h1>
-    <p class="hero__sub reveal" style="--rd:.16s">An unhurried retreat on the Andaman coast where turquoise infinity pools meet limestone-karst horizons and golden light warms every timber deck.</p>
-    <div class="hero__actions reveal" style="--rd:.24s">
+    <span data-m="enter" class="kicker kicker--light">Ao Nam Mao · Krabi, Thailand</span>
+    <h1 data-m="enter" class="hero__tag">Bloom by the Andaman Sea.</h1>
+    <p data-m="enter" class="hero__sub">An unhurried retreat on the Andaman coast where turquoise infinity pools meet limestone-karst horizons and golden light warms every timber deck.</p>
+    <div data-m="enter" class="hero__actions">
       <a class="btn" href="booking.html">Book your stay
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="btn btn--light" href="rooms.html">Explore rooms</a>
     </div>
   </div>
-  <div class="hero__scroll" aria-hidden="true"><span class="mouse"></span>Scroll</div>
+  <div data-m="enter" class="hero__scroll" aria-hidden="true"><span class="mouse"></span>Scroll</div>
 </header>
 
 <!-- ============ BOOKING BAR ============ -->
 <form class="bookbar" action="booking.html" method="get" aria-label="Check availability">
-  <div class="bookbar__inner reveal">
+  <div data-m="enter" class="bookbar__inner">
     <label class="bookbar__field"><span class="bookbar__label">Check-in</span><input type="date" name="checkin" data-date="in"></label>
     <label class="bookbar__field"><span class="bookbar__label">Check-out <span class="bookbar__nights" data-nights aria-live="polite"></span></span><input type="date" name="checkout" data-date="out"></label>
     <label class="bookbar__field"><span class="bookbar__label">Guests</span>
@@ -82,24 +84,24 @@
 <section class="essence section">
   <div class="container">
     <div class="grid grid-2" style="align-items:center">
-      <div class="reveal">
-        <span class="kicker kicker--light">The Vibe</span>
-        <p class="essence-quote mt-s">“Sun-warmed serenity, <em>framed by the sea.</em>”</p>
-        <p class="essence-copy">Mornings begin turquoise and unhurried; afternoons soften into gold. Here the day keeps the pace of the tide — and the karsts hold the light a little longer each evening.</p>
-        <div class="vibe-thumbs">
+      <div>
+        <span data-m="kicker" class="kicker kicker--light">The Vibe</span>
+        <p data-m="words" class="essence-quote mt-s">“Sun-warmed serenity, <em>framed by the sea.</em>”</p>
+        <p data-m="up" class="essence-copy">Mornings begin turquoise and unhurried; afternoons soften into gold. Here the day keeps the pace of the tide — and the karsts hold the light a little longer each evening.</p>
+        <div data-m="kids" class="vibe-thumbs">
           <button class="vibe-thumb" type="button" aria-label="Show the sea-view room in the main view">
-            <img src="assets/img/room-poolview-curtains-01.webp" alt="Room opening through sheer curtains to the infinity pool and sea" loading="lazy" decoding="async">
+            <img width="1600" height="1200" src="assets/img/room-poolview-curtains-01.webp" alt="Room opening through sheer curtains to the infinity pool and sea" loading="lazy" decoding="async">
           </button>
           <button class="vibe-thumb" type="button" aria-label="Show the golden-hour pool in the main view">
-            <img src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms" loading="lazy" decoding="async">
+            <img width="1600" height="1200" src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms" loading="lazy" decoding="async">
           </button>
           <button class="vibe-thumb" type="button" aria-label="Show the orchid-filled lobby in the main view">
-            <img src="assets/img/lobby-reception-orchids-01.webp" alt="Reception lobby dressed with orchids and a live-edge timber desk" loading="lazy" decoding="async">
+            <img width="1200" height="900" src="assets/img/lobby-reception-orchids-01.webp" alt="Reception lobby dressed with orchids and a live-edge timber desk" loading="lazy" decoding="async">
           </button>
         </div>
       </div>
-      <div class="feature__media reveal" style="--rd:.12s;aspect-ratio:4/3">
-        <img data-vibe-main src="assets/img/beachfront-deck-sunset-01.webp" alt="Signature sunset deck with a hanging chair and white steps to the sand" loading="lazy" decoding="async">
+      <div data-m="curtain" class="feature__media" style="aspect-ratio:4/3">
+        <img data-vibe-main width="1600" height="1200" src="assets/img/beachfront-deck-sunset-01.webp" alt="Signature sunset deck with a hanging chair and white steps to the sand" loading="lazy" decoding="async">
       </div>
     </div>
   </div>
@@ -109,21 +111,21 @@
 <section class="section" id="about">
   <div class="container">
     <div class="feature feature--rev">
-      <div class="feature__media reveal">
+      <div data-m="curtain" class="feature__media">
         <span class="feature__badge">Ao Nam Mao · Krabi</span>
-        <img data-zoom src="assets/img/pool2.webp" alt="Infinity pool overlooking the Andaman Sea and Krabi karsts, framed by tropical greenery" loading="lazy" decoding="async">
+        <img data-zoom width="1280" height="853" src="assets/img/pool2.webp" alt="Infinity pool overlooking the Andaman Sea and Krabi karsts, framed by tropical greenery" loading="lazy" decoding="async">
       </div>
-      <div class="feature__body reveal" style="--rd:.1s">
-        <span class="kicker">Welcome</span>
-        <h2>Relaxed tropical luxury on the Andaman coast</h2>
-        <p>Blue Orchid Beach is a small beachfront retreat where the day moves at the pace of the tide. Wake to sea-view balconies, drift between infinity pools and warm sand, and let golden hour fold slowly over the limestone karsts — the yellow orchid greeting every guest at the door.</p>
-        <div class="feature__list">
+      <div class="feature__body">
+        <span data-m="kicker" class="kicker">Welcome</span>
+        <h2 data-m="lines">Relaxed tropical luxury on the Andaman coast</h2>
+        <p data-m="up">Blue Orchid Beach is a small beachfront retreat where the day moves at the pace of the tide. Wake to sea-view balconies, drift between infinity pools and warm sand, and let golden hour fold slowly over the limestone karsts — the yellow orchid greeting every guest at the door.</p>
+        <div data-m="kids" class="feature__list">
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>SHA Certified</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>Beachfront</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V10l8-5 8 5v10"/></svg>Infinity pools</span>
           <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 12 8l7 4.5M5 12.5V19h14v-6.5M9 19v-4h6v4"/></svg>Sea-view rooms</span>
         </div>
-        <a class="link-arrow" href="gallery.html">Wander the gallery
+        <a data-m="up" class="link-arrow" href="gallery.html">Wander the gallery
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -134,61 +136,61 @@
 <!-- ============ EXPERIENCE FEATURETTES ============ -->
 <section class="section bg-paper2" id="experience">
   <div class="container">
-    <div class="section-head center reveal">
-      <span class="kicker kicker--center">The Experience</span>
-      <h2>Days measured in light and water</h2>
-      <p class="muted">Lead with the sea. Every corner of the resort is composed around the turquoise water, the warm timber and the slow Andaman sunset.</p>
+    <div class="section-head center">
+      <span data-m="kicker" class="kicker kicker--center">The Experience</span>
+      <h2 data-m="lines">Days measured in light and water</h2>
+      <p data-m="up" class="muted">Lead with the sea. Every corner of the resort is composed around the turquoise water, the warm timber and the slow Andaman sunset.</p>
     </div>
 
     <div class="grid" style="gap:clamp(40px,6vw,84px)">
       <!-- Pools -->
-      <div class="feature reveal">
-        <div class="feature__media">
+      <div class="feature">
+        <div data-m="curtain" class="feature__media">
           <span class="feature__badge">Infinity Pools</span>
-          <img src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms above the sea" loading="lazy" decoding="async">
+          <img width="1600" height="1200" src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms above the sea" loading="lazy" decoding="async">
         </div>
         <div class="feature__body">
-          <span class="kicker">Water</span>
-          <h2>Infinity pools that meet the horizon</h2>
-          <p>Slip into a curved infinity edge that pours toward the sea, then trade the water for a shaded lounger as the tiles glow green at dusk. Two pools, one endless view.</p>
-          <div class="feature__list">
+          <span data-m="kicker" class="kicker">Water</span>
+          <h2 data-m="lines">Infinity pools that meet the horizon</h2>
+          <p data-m="up">Slip into a curved infinity edge that pours toward the sea, then trade the water for a shaded lounger as the tiles glow green at dusk. Two pools, one endless view.</p>
+          <div data-m="kids" class="feature__list">
             <span class="chip">Sea-facing</span><span class="chip">Poolside loungers</span><span class="chip">Lit at dusk</span>
           </div>
-          <a class="link-arrow" href="gallery.html">See the pools
+          <a data-m="up" class="link-arrow" href="gallery.html">See the pools
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
       <!-- Beach -->
-      <div class="feature feature--rev reveal">
-        <div class="feature__media">
+      <div class="feature feature--rev">
+        <div data-m="curtain" class="feature__media">
           <span class="feature__badge">Sea-view Deck</span>
-          <img src="assets/img/beach-deck-seaview-01.webp" alt="Frangipani in bloom over a turquoise-sea timber deck" loading="lazy" decoding="async">
+          <img width="1600" height="1200" src="assets/img/beach-deck-seaview-01.webp" alt="Frangipani in bloom over a turquoise-sea timber deck" loading="lazy" decoding="async">
         </div>
         <div class="feature__body">
-          <span class="kicker">Sea</span>
-          <h2>Frangipani, timber and turquoise</h2>
-          <p>A weathered timber deck opens straight onto the Andaman — frangipani in bloom overhead, the water impossibly clear, and nothing on the agenda but the slow drift of a longtail across the bay.</p>
-          <div class="feature__list">
+          <span data-m="kicker" class="kicker">Sea</span>
+          <h2 data-m="lines">Frangipani, timber and turquoise</h2>
+          <p data-m="up">A weathered timber deck opens straight onto the Andaman — frangipani in bloom overhead, the water impossibly clear, and nothing on the agenda but the slow drift of a longtail across the bay.</p>
+          <div data-m="kids" class="feature__list">
             <span class="chip">Direct beach access</span><span class="chip">Turquoise sea</span><span class="chip">Frangipani shade</span>
           </div>
-          <a class="link-arrow" href="gallery.html">Find the deck
+          <a data-m="up" class="link-arrow" href="gallery.html">Find the deck
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
       <!-- Dining -->
-      <div class="feature reveal">
-        <div class="feature__media">
+      <div class="feature">
+        <div data-m="curtain" class="feature__media">
           <span class="feature__badge">Open-air Dining</span>
-          <img src="assets/img/restaurant-deck-goldenhour-01.webp" alt="Live-edge wood dining deck strung with warm lights at golden hour" loading="lazy" decoding="async">
+          <img width="1600" height="1200" src="assets/img/restaurant-deck-goldenhour-01.webp" alt="Live-edge wood dining deck strung with warm lights at golden hour" loading="lazy" decoding="async">
         </div>
         <div class="feature__body">
-          <span class="kicker">Taste</span>
-          <h2>Dining on a live-edge timber deck</h2>
-          <p>Start with fresh tropical fruit and just-pressed juice; end under strung lights as the sea breeze arrives. Honest, true-to-life cooking served where the light is best.</p>
-          <div class="feature__list">
+          <span data-m="kicker" class="kicker">Taste</span>
+          <h2 data-m="lines">Dining on a live-edge timber deck</h2>
+          <p data-m="up">Start with fresh tropical fruit and just-pressed juice; end under strung lights as the sea breeze arrives. Honest, true-to-life cooking served where the light is best.</p>
+          <div data-m="kids" class="feature__list">
             <span class="chip">Fresh breakfast</span><span class="chip">Welcome orchid drinks</span><span class="chip">Sea breeze</span>
           </div>
-          <a class="link-arrow" href="gallery.html">Browse dining
+          <a data-m="up" class="link-arrow" href="gallery.html">Browse dining
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
@@ -199,10 +201,10 @@
 <!-- ============ STATS ============ -->
 <section class="section--tight section">
   <div class="container">
-    <div class="ornament reveal" style="margin-bottom:40px">
+    <div data-m="ornament" class="ornament" style="margin-bottom:40px">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6Zm0 14c1.5 2 1.5 4 0 6-1.5-2-1.5-4 0-6ZM2 12c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0Zm14 0c2-1.5 4-1.5 6 0-2 1.5-4 1.5-6 0Z"/><circle cx="12" cy="12" r="2.4"/></svg>
     </div>
-    <div class="stats reveal">
+    <div data-m="kids" class="stats">
       <div class="stat text-center"><div class="num">28</div><div class="lbl">Warm rooms</div></div>
       <div class="stat text-center"><div class="num">2</div><div class="lbl">Infinity pools</div></div>
       <div class="stat text-center"><div class="num">50m</div><div class="lbl">To the sand</div></div>
@@ -214,16 +216,16 @@
 <!-- ============ FEATURED ROOMS ============ -->
 <section class="section bg-paper2" id="rooms">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">Stay</span>
-      <h2>Three rooms, made for the coast</h2>
-      <p class="muted">From a value garden-view Superior to our pool-view Deluxe — three room types, each real, warm and washed in true-to-life light.</p>
+    <div class="section-head">
+      <span data-m="kicker" class="kicker">Stay</span>
+      <h2 data-m="lines">Three rooms, made for the coast</h2>
+      <p data-m="up" class="muted">From a value garden-view Superior to our pool-view Deluxe — three room types, each real, warm and washed in true-to-life light.</p>
     </div>
-    <div class="grid grid-3">
-      <article class="room-card reveal">
+    <div data-m="cards" class="grid grid-3">
+      <article class="room-card">
         <a class="room-card__media" href="rooms.html#superior-garden" tabindex="-1" aria-hidden="true">
           <span class="tag">Best value</span>
-          <img data-vt="superior-garden" src="assets/img/room-yellow-feature-01.webp" alt="Bright Superior room with the signature warm-yellow feature wall" loading="lazy" decoding="async">
+          <img data-vt="superior-garden" width="1200" height="900" src="assets/img/room-yellow-feature-01.webp" alt="Bright Superior room with the signature warm-yellow feature wall" loading="lazy" decoding="async">
         </a>
         <div class="room-card__body">
           <h3><a href="rooms.html#superior-garden">Superior Room, Garden View</a></h3>
@@ -239,10 +241,10 @@
         </div>
       </article>
 
-      <article class="room-card reveal" style="--rd:.1s">
+      <article class="room-card">
         <a class="room-card__media" href="rooms.html#superior-sea-balcony" tabindex="-1" aria-hidden="true">
           <span class="tag">Sea View</span>
-          <img data-vt="superior-sea-balcony" src="assets/img/room-balcony-seaview-01.webp" alt="Second-floor Superior room with a private balcony over the sea" loading="lazy" decoding="async">
+          <img data-vt="superior-sea-balcony" width="1200" height="900" src="assets/img/room-balcony-seaview-01.webp" alt="Second-floor Superior room with a private balcony over the sea" loading="lazy" decoding="async">
         </a>
         <div class="room-card__body">
           <h3><a href="rooms.html#superior-sea-balcony">Superior Sea View, Balcony</a></h3>
@@ -258,10 +260,10 @@
         </div>
       </article>
 
-      <article class="room-card reveal" style="--rd:.2s">
+      <article class="room-card">
         <a class="room-card__media" href="rooms.html#deluxe-pool-view" tabindex="-1" aria-hidden="true">
           <span class="tag tag--orchid">Deluxe</span>
-          <img data-vt="deluxe-pool-view" src="assets/img/room-poolview-curtains-01.webp" alt="Deluxe room opening through sheer curtains to the infinity pool and sea" loading="lazy" decoding="async">
+          <img data-vt="deluxe-pool-view" width="1600" height="1200" src="assets/img/room-poolview-curtains-01.webp" alt="Deluxe room opening through sheer curtains to the infinity pool and sea" loading="lazy" decoding="async">
         </a>
         <div class="room-card__body">
           <h3><a href="rooms.html#deluxe-pool-view">Deluxe Room, Pool View</a></h3>
@@ -277,7 +279,7 @@
         </div>
       </article>
     </div>
-    <div class="text-center mt-l reveal">
+    <div data-m="up" class="text-center mt-l">
       <a class="btn btn--ghost" href="rooms.html">View all rooms
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -288,32 +290,32 @@
 <!-- ============ GALLERY TEASER ============ -->
 <section class="section" id="gallery-teaser">
   <div class="container">
-    <div class="section-head center reveal">
-      <span class="kicker kicker--center">Moments</span>
-      <h2>A glimpse of Blue Orchid</h2>
-      <p class="muted">A slow drift through the resort — hover to pause, tap any frame to look closer.</p>
+    <div class="section-head center">
+      <span data-m="kicker" class="kicker kicker--center">Moments</span>
+      <h2 data-m="lines">A glimpse of Blue Orchid</h2>
+      <p data-m="up" class="muted">A slow drift through the resort — hover to pause, tap any frame to look closer.</p>
     </div>
   </div>
-  <div class="marquee reveal" aria-label="A drifting gallery of resort photos">
+  <div data-m="up" class="marquee" aria-label="A drifting gallery of resort photos">
     <div class="marquee__row" data-dir="left">
-      <button class="marquee__item" type="button" data-cap="Golden-hour pool" data-cat="Pools"><img src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms" loading="lazy" decoding="async"><span class="marquee__cap">Golden-hour pool</span></button>
-      <button class="marquee__item" type="button" data-cap="Sea-view deck" data-cat="Beach"><img src="assets/img/beach-deck-seaview-01.webp" alt="Frangipani over a turquoise-sea timber deck" loading="lazy" decoding="async"><span class="marquee__cap">Sea-view deck</span></button>
-      <button class="marquee__item" type="button" data-cap="Dining deck" data-cat="Dining"><img src="assets/img/restaurant-deck-goldenhour-01.webp" alt="Live-edge dining deck at golden hour" loading="lazy" decoding="async"><span class="marquee__cap">Dining deck</span></button>
-      <button class="marquee__item" type="button" data-cap="Pool-view room" data-cat="Rooms"><img src="assets/img/room-poolview-curtains-01.webp" alt="Room opening to the infinity pool and sea" loading="lazy" decoding="async"><span class="marquee__cap">Pool-view room</span></button>
-      <button class="marquee__item" type="button" data-cap="Poolside lounge" data-cat="Pools"><img src="assets/img/poolside-lounge-seating-01.webp" alt="Poolside lounge seating" loading="lazy" decoding="async"><span class="marquee__cap">Poolside lounge</span></button>
-      <button class="marquee__item" type="button" data-cap="The Krabi karsts" data-cat="Location"><img src="assets/img/scenery-karst-mist-01.webp" alt="Misty Krabi limestone karsts over the sea" loading="lazy" decoding="async"><span class="marquee__cap">The Krabi karsts</span></button>
+      <button class="marquee__item" type="button" data-cap="Golden-hour pool" data-cat="Pools"><img width="1600" height="1200" src="assets/img/pool-sunset-palms-01.webp" alt="Golden-hour infinity pool fringed with palms" loading="lazy" decoding="async"><span class="marquee__cap">Golden-hour pool</span></button>
+      <button class="marquee__item" type="button" data-cap="Sea-view deck" data-cat="Beach"><img width="1600" height="1200" src="assets/img/beach-deck-seaview-01.webp" alt="Frangipani over a turquoise-sea timber deck" loading="lazy" decoding="async"><span class="marquee__cap">Sea-view deck</span></button>
+      <button class="marquee__item" type="button" data-cap="Dining deck" data-cat="Dining"><img width="1600" height="1200" src="assets/img/restaurant-deck-goldenhour-01.webp" alt="Live-edge dining deck at golden hour" loading="lazy" decoding="async"><span class="marquee__cap">Dining deck</span></button>
+      <button class="marquee__item" type="button" data-cap="Pool-view room" data-cat="Rooms"><img width="1600" height="1200" src="assets/img/room-poolview-curtains-01.webp" alt="Room opening to the infinity pool and sea" loading="lazy" decoding="async"><span class="marquee__cap">Pool-view room</span></button>
+      <button class="marquee__item" type="button" data-cap="Poolside lounge" data-cat="Pools"><img width="1200" height="900" src="assets/img/poolside-lounge-seating-01.webp" alt="Poolside lounge seating" loading="lazy" decoding="async"><span class="marquee__cap">Poolside lounge</span></button>
+      <button class="marquee__item" type="button" data-cap="The Krabi karsts" data-cat="Location"><img width="1477" height="1108" src="assets/img/scenery-karst-mist-01.webp" alt="Misty Krabi limestone karsts over the sea" loading="lazy" decoding="async"><span class="marquee__cap">The Krabi karsts</span></button>
     </div>
     <div class="marquee__row" data-dir="right">
-      <button class="marquee__item" type="button" data-cap="Sea-view pool" data-cat="Pools"><img src="assets/img/pool-elevated-seaview-01.webp" alt="Elevated pool over the turquoise sea" loading="lazy" decoding="async"><span class="marquee__cap">Sea-view pool</span></button>
-      <button class="marquee__item" type="button" data-cap="Fresh &amp; bright" data-cat="Dining"><img src="assets/img/food-fruit-juice-01.webp" alt="Fresh fruit plate and just-pressed juices" loading="lazy" decoding="async"><span class="marquee__cap">Fresh &amp; bright</span></button>
-      <button class="marquee__item" type="button" data-cap="Honeymoon touch" data-cat="Rooms"><img src="assets/img/room-honeymoon-decor-01.webp" alt="Honeymoon turndown with petals and towel-art" loading="lazy" decoding="async"><span class="marquee__cap">Honeymoon touch</span></button>
-      <button class="marquee__item" type="button" data-cap="Marble bath" data-cat="Rooms"><img src="assets/img/bathroom-marble-vessel-01.webp" alt="Grey-marble vessel sink" loading="lazy" decoding="async"><span class="marquee__cap">Marble bath</span></button>
-      <button class="marquee__item" type="button" data-cap="At sunset" data-cat="Beach"><img src="assets/img/sign-hanging-sunset-01.webp" alt="The hanging Blue Orchid Beach sign at sunset" loading="lazy" decoding="async"><span class="marquee__cap">At sunset</span></button>
-      <button class="marquee__item" type="button" data-cap="Palm walkway" data-cat="Pools"><img src="assets/img/pool-walkway-palms-01.webp" alt="Palm-lined pool walkway to the sea" loading="lazy" decoding="async"><span class="marquee__cap">Palm walkway</span></button>
+      <button class="marquee__item" type="button" data-cap="Sea-view pool" data-cat="Pools"><img width="1200" height="900" src="assets/img/pool-elevated-seaview-01.webp" alt="Elevated pool over the turquoise sea" loading="lazy" decoding="async"><span class="marquee__cap">Sea-view pool</span></button>
+      <button class="marquee__item" type="button" data-cap="Fresh &amp; bright" data-cat="Dining"><img width="1477" height="1108" src="assets/img/food-fruit-juice-01.webp" alt="Fresh fruit plate and just-pressed juices" loading="lazy" decoding="async"><span class="marquee__cap">Fresh &amp; bright</span></button>
+      <button class="marquee__item" type="button" data-cap="Honeymoon touch" data-cat="Rooms"><img width="1200" height="900" src="assets/img/room-honeymoon-decor-01.webp" alt="Honeymoon turndown with petals and towel-art" loading="lazy" decoding="async"><span class="marquee__cap">Honeymoon touch</span></button>
+      <button class="marquee__item" type="button" data-cap="Marble bath" data-cat="Rooms"><img width="1600" height="1200" src="assets/img/bathroom-marble-vessel-01.webp" alt="Grey-marble vessel sink" loading="lazy" decoding="async"><span class="marquee__cap">Marble bath</span></button>
+      <button class="marquee__item" type="button" data-cap="At sunset" data-cat="Beach"><img width="1600" height="1200" src="assets/img/sign-hanging-sunset-01.webp" alt="The hanging Blue Orchid Beach sign at sunset" loading="lazy" decoding="async"><span class="marquee__cap">At sunset</span></button>
+      <button class="marquee__item" type="button" data-cap="Palm walkway" data-cat="Pools"><img width="1800" height="1350" src="assets/img/pool-walkway-palms-01.webp" alt="Palm-lined pool walkway to the sea" loading="lazy" decoding="async"><span class="marquee__cap">Palm walkway</span></button>
     </div>
   </div>
   <div class="container">
-    <div class="text-center mt-l reveal">
+    <div data-m="up" class="text-center mt-l">
       <a class="btn btn--ghost" href="gallery.html">Open the full gallery
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -324,14 +326,14 @@
 <section class="section bg-paper2" id="location-teaser">
   <div class="container">
     <div class="locrow">
-      <div class="locrow__media reveal">
-        <img src="assets/img/scenery-karst-mist-01.webp" alt="Misty Krabi limestone karsts rising from the sea with longtail boats" loading="lazy" decoding="async">
+      <div data-m="curtain" class="locrow__media">
+        <img width="1477" height="1108" src="assets/img/scenery-karst-mist-01.webp" alt="Misty Krabi limestone karsts rising from the sea with longtail boats" loading="lazy" decoding="async">
       </div>
-      <div class="reveal" style="--rd:.1s">
-        <span class="kicker">The Location</span>
-        <h2>At the foot of the Krabi karsts</h2>
-        <p class="muted">Tucked into Ao Nam Mao on Thailand’s Andaman coast, Blue Orchid Beach sits between calm water and dramatic limestone cliffs — minutes from the longtail piers to Railay and Ao Nang, yet a world away from the crowds.</p>
-        <div class="loc-grid">
+      <div>
+        <span data-m="kicker" class="kicker">The Location</span>
+        <h2 data-m="lines">At the foot of the Krabi karsts</h2>
+        <p data-m="up" class="muted">Tucked into Ao Nam Mao on Thailand’s Andaman coast, Blue Orchid Beach sits between calm water and dramatic limestone cliffs — minutes from the longtail piers to Railay and Ao Nang, yet a world away from the crowds.</p>
+        <div data-m="kids" class="loc-grid">
           <div class="loccard">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             <div><h4>Address</h4><p>Ao Nam Mao, Krabi, Thailand</p></div>
@@ -341,7 +343,7 @@
             <div><h4>Nearby</h4><p>Railay &amp; Ao Nang by longtail boat</p></div>
           </div>
         </div>
-        <a class="link-arrow mt-m" href="gallery.html#location">See the location
+        <a data-m="up" class="link-arrow mt-m" href="gallery.html#location">See the location
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -351,14 +353,14 @@
 <!-- ============ CTA BAND ============ -->
 <section class="section">
   <div class="container">
-    <div class="cta reveal">
-      <div class="cta__media"><img src="assets/img/pool-sunset-litwall-01.webp" alt="Dusk pool with a lit feature wall and reflections" loading="lazy" decoding="async"></div>
+    <div class="cta">
+      <div class="cta__media"><img width="1600" height="1200" src="assets/img/pool-sunset-litwall-01.webp" alt="Dusk pool with a lit feature wall and reflections" loading="lazy" decoding="async"></div>
       <div class="cta__scrim"></div>
       <div class="cta__inner on-dark">
-        <span class="kicker kicker--light">Your escape awaits</span>
-        <h2 class="mt-s">Reserve your place in the golden hour</h2>
-        <p>Best rates are booked direct. Tell us your dates and we’ll hold the light for you.</p>
-        <a class="btn" href="booking.html">Check availability
+        <span data-m="kicker" class="kicker kicker--light">Your escape awaits</span>
+        <h2 data-m="lines" class="mt-s">Reserve your place in the golden hour</h2>
+        <p data-m="up">Best rates are booked direct. Tell us your dates and we’ll hold the light for you.</p>
+        <a data-m="up" class="btn" href="booking.html">Check availability
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -370,7 +372,7 @@
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach">
+        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach" width="355" height="30" loading="lazy">
         <p>A relaxed tropical-luxury beachfront retreat at Ao Nam Mao, Krabi — where turquoise pools meet the karst horizon and the yellow orchid greets every guest.</p>
         <span class="sha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>SHA Certified</span>
       </div>
@@ -433,7 +435,13 @@
   </figure>
 </div>
 
-<script src="assets/main.js"></script>
+<script src="assets/main.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+<script src="assets/motion.js" defer></script>
+<script src="assets/motion-home.js" defer></script>
   <div style="background:#111;color:#bbb;font:400 13px/1.6 system-ui,sans-serif;padding:14px 20px;text-align:center">Unofficial concept. Not affiliated with or endorsed by the business.</div>
 </body>
 </html>

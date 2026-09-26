@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<script>(function(d,w){var h=d.documentElement,q=location.search,c=['js'];if(/[?&]still/.test(q))c.push('still');else if(!(w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches)){c.push('motion');var s=null;try{s=sessionStorage.getItem('bob-intro')}catch(e){}if((!s&&!navigator.webdriver&&!/HeadlessChrome/.test(navigator.userAgent))||/[?&]intro=1/.test(q))c.push('intro-on');w.__bobFail=function(){h.classList.remove('motion','intro-on')};setTimeout(function(){if(!h.classList.contains('motion-live'))w.__bobFail()},3500)}h.className+=(h.className?' ':'')+c.join(' ')})(document,window);</script>
 <title>Rooms &amp; Suites — Blue Orchid Beach, Krabi</title>
 <meta name="description" content="Sea-view rooms and suites at Blue Orchid Beach, Krabi — from the signature yellow-wall room to a petal-strewn honeymoon suite. Warm, real spaces washed in true-to-life light.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -11,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..600&family=Raleway:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/motion.css">
 <script>addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&!t.closest('.lightbox')){t.style.visibility='hidden';if(t.parentElement)t.parentElement.classList.add('media-fallback');}},true);</script>
 </head>
 <body data-page="rooms">
@@ -42,26 +44,26 @@
 
 <!-- ============ PAGE HEADER ============ -->
 <header class="pagehead">
-  <div class="pagehead__media"><img src="assets/img/room-warm-balcony-01.webp" alt="Warm-lit room with a private balcony" fetchpriority="high"></div>
+  <div class="pagehead__media"><img width="1200" height="900" src="assets/img/room-warm-balcony-01.webp" alt="Warm-lit room with a private balcony" fetchpriority="high"></div>
   <div class="pagehead__scrim"></div>
   <div class="pagehead__inner">
-    <nav class="crumbs reveal" aria-label="Breadcrumb">
+    <nav data-m="enter" class="crumbs" aria-label="Breadcrumb">
       <a href="index.html">Home</a>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
       <span>Rooms &amp; Suites</span>
     </nav>
-    <h1 class="reveal" style="--rd:.06s">Rooms &amp; Suites</h1>
-    <p class="reveal" style="--rd:.12s">Three room types — from a value garden-view Superior to our pool-view Deluxe — each warm, real and composed around the light.</p>
+    <h1 data-m="enter">Rooms &amp; Suites</h1>
+    <p data-m="enter">Three room types — from a value garden-view Superior to our pool-view Deluxe — each warm, real and composed around the light.</p>
   </div>
 </header>
 
 <!-- ============ INTRO ============ -->
 <section class="section--tight section">
   <div class="container">
-    <div class="section-head center reveal">
-      <span class="kicker kicker--center">Where you’ll rest</span>
-      <h2>Real rooms, true-to-life light</h2>
-      <p class="muted">No staging, no fake saturation — just honest spaces with natural light, the orchid’s signature yellow, and a balcony for the breeze. Choose the stay that fits your trip.</p>
+    <div class="section-head center">
+      <span data-m="kicker" class="kicker kicker--center">Where you’ll rest</span>
+      <h2 data-m="lines">Real rooms, true-to-life light</h2>
+      <p data-m="up" class="muted">No staging, no fake saturation — just honest spaces with natural light, the orchid’s signature yellow, and a balcony for the breeze. Choose the stay that fits your trip.</p>
     </div>
   </div>
 </section>
@@ -72,17 +74,17 @@
     <div class="grid" style="gap:clamp(56px,8vw,110px)">
 
       <!-- Superior Room, Garden View (No Balcony) -->
-      <article class="suite reveal" id="superior-garden">
-        <div class="suite__media">
+      <article class="suite" id="superior-garden">
+        <div data-m="curtain" class="suite__media">
           <span class="tag">Best value</span>
-          <img src="assets/img/room-yellow-feature-01.webp" alt="Bright Superior room with the signature warm-yellow feature wall" loading="lazy" decoding="async">
+          <img width="1200" height="900" src="assets/img/room-yellow-feature-01.webp" alt="Bright Superior room with the signature warm-yellow feature wall" loading="lazy" decoding="async">
           <div class="suite__price"><span class="from">From</span><b>฿1,300</b> <small>/ night</small></div>
         </div>
         <div class="suite__body">
-          <span class="kicker">Superior · No balcony</span>
-          <h2>Superior Room, Garden View</h2>
-          <p>Our most easygoing room and best value — bright, comfortable and quiet, wrapped in the orchid’s signature warm-yellow tones with a leafy garden outlook. No balcony; just everything you need a few steps from the pool and the sea.</p>
-          <ul class="amen">
+          <span data-m="kicker" class="kicker">Superior · No balcony</span>
+          <h2 data-m="lines">Superior Room, Garden View</h2>
+          <p data-m="up">Our most easygoing room and best value — bright, comfortable and quiet, wrapped in the orchid’s signature warm-yellow tones with a leafy garden outlook. No balcony; just everything you need a few steps from the pool and the sea.</p>
+          <ul data-m="kids" class="amen">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20v-6h16v6M4 14V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/></svg>Queen bed</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>Garden view</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8h14M6 12h12M7 16h10"/></svg>Air-conditioned</li>
@@ -90,7 +92,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v6l-4 4 4 4v6H6v-6l4-4-4-4z"/></svg>Rain shower</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Smart TV</li>
           </ul>
-          <div class="hero__actions">
+          <div data-m="up" class="hero__actions">
             <a class="btn" href="booking.html?room=superior-garden">Reserve this room</a>
             <a class="btn btn--ghost" href="gallery.html">See photos</a>
           </div>
@@ -98,17 +100,17 @@
       </article>
 
       <!-- Superior Sea View with Balcony (2nd Floor) -->
-      <article class="suite suite--rev reveal" id="superior-sea-balcony">
-        <div class="suite__media">
+      <article class="suite suite--rev" id="superior-sea-balcony">
+        <div data-m="curtain" class="suite__media">
           <span class="tag">Sea View</span>
-          <img src="assets/img/room-balcony-seaview-01.webp" alt="Second-floor Superior room with a private balcony over the open Andaman Sea" loading="lazy" decoding="async">
+          <img width="1200" height="900" src="assets/img/room-balcony-seaview-01.webp" alt="Second-floor Superior room with a private balcony over the open Andaman Sea" loading="lazy" decoding="async">
           <div class="suite__price"><span class="from">From</span><b>฿1,900</b> <small>/ night</small></div>
         </div>
         <div class="suite__body">
-          <span class="kicker">Superior · 2nd floor</span>
-          <h2>Superior Sea View with Balcony</h2>
-          <p>A second-floor room with your own private balcony and an open view across the Andaman. Step out for the morning breeze, watch the longtails drift past, and fall asleep to the sound of the sea.</p>
-          <ul class="amen">
+          <span data-m="kicker" class="kicker">Superior · 2nd floor</span>
+          <h2 data-m="lines">Superior Sea View with Balcony</h2>
+          <p data-m="up">A second-floor room with your own private balcony and an open view across the Andaman. Step out for the morning breeze, watch the longtails drift past, and fall asleep to the sound of the sea.</p>
+          <ul data-m="kids" class="amen">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20v-6h16v6M4 14V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/></svg>King or twin bed</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>Open sea view</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13M9 21v-5h6v5"/></svg>Private balcony</li>
@@ -116,7 +118,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8h14M6 12h12M7 16h10"/></svg>Air-conditioned</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>Free Wi-Fi</li>
           </ul>
-          <div class="hero__actions">
+          <div data-m="up" class="hero__actions">
             <a class="btn" href="booking.html?room=superior-sea-balcony">Reserve this room</a>
             <a class="btn btn--ghost" href="gallery.html">See photos</a>
           </div>
@@ -124,17 +126,17 @@
       </article>
 
       <!-- Deluxe Room with Pool View -->
-      <article class="suite reveal" id="deluxe-pool-view">
-        <div class="suite__media">
+      <article class="suite" id="deluxe-pool-view">
+        <div data-m="curtain" class="suite__media">
           <span class="tag tag--orchid">Deluxe</span>
-          <img src="assets/img/room-poolview-curtains-01.webp" alt="Deluxe room opening through sheer curtains onto the infinity pool and sea" loading="lazy" decoding="async">
+          <img width="1600" height="1200" src="assets/img/room-poolview-curtains-01.webp" alt="Deluxe room opening through sheer curtains onto the infinity pool and sea" loading="lazy" decoding="async">
           <div class="suite__price"><span class="from">From</span><b>฿3,400</b> <small>/ night</small></div>
         </div>
         <div class="suite__body">
-          <span class="kicker">Deluxe</span>
-          <h2>Deluxe Room with Pool View</h2>
-          <p>Our most spacious room, opening through floor-to-ceiling sheers onto the infinity pool and the open sea beyond. Wake slowly, throw the curtains wide, and step straight out toward the water.</p>
-          <ul class="amen">
+          <span data-m="kicker" class="kicker">Deluxe</span>
+          <h2 data-m="lines">Deluxe Room with Pool View</h2>
+          <p data-m="up">Our most spacious room, opening through floor-to-ceiling sheers onto the infinity pool and the open sea beyond. Wake slowly, throw the curtains wide, and step straight out toward the water.</p>
+          <ul data-m="kids" class="amen">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20v-6h16v6M4 14V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5"/></svg>King bed</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>Pool &amp; sea view</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13M9 21v-5h6v5"/></svg>Private terrace</li>
@@ -142,7 +144,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>Free Wi-Fi</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16"/></svg>Ensuite bath</li>
           </ul>
-          <div class="hero__actions">
+          <div data-m="up" class="hero__actions">
             <a class="btn" href="booking.html?room=deluxe-pool-view">Reserve this room</a>
             <a class="btn btn--ghost" href="gallery.html">See photos</a>
           </div>
@@ -156,11 +158,11 @@
 <!-- ============ EVERY STAY INCLUDES ============ -->
 <section class="section bg-paper2">
   <div class="container">
-    <div class="section-head center reveal">
-      <span class="kicker kicker--center">Every stay includes</span>
-      <h2>Thoughtful from check-in to check-out</h2>
+    <div class="section-head center">
+      <span data-m="kicker" class="kicker kicker--center">Every stay includes</span>
+      <h2 data-m="lines">Thoughtful from check-in to check-out</h2>
     </div>
-    <div class="grid grid-3 reveal" style="gap:18px">
+    <div data-m="kids" class="grid grid-3" style="gap:18px">
       <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1 8a5 5 0 0 1-10 0L6 3z"/><path d="M9 21h6"/></svg><div><h4>Daily breakfast</h4><p>Fresh fruit, juices and a hot plate on the timber dining deck.</p></div></div>
       <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M2 9.5a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg><div><h4>Free Wi-Fi</h4><p>Throughout the rooms, pools and common areas.</p></div></div>
       <div class="loccard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V10l8-5 8 5v10"/><path d="M3 13a9 5 0 0 1 18 0"/></svg><div><h4>Infinity-pool access</h4><p>Two sea-facing pools, loungers and a poolside lounge.</p></div></div>
@@ -174,14 +176,14 @@
 <!-- ============ CTA ============ -->
 <section class="section">
   <div class="container">
-    <div class="cta reveal">
-      <div class="cta__media"><img src="assets/img/pool-walkway-palms-01.webp" alt="Bright pool walkway leading to the sea" loading="lazy" decoding="async"></div>
+    <div class="cta">
+      <div class="cta__media"><img width="1800" height="1350" src="assets/img/pool-walkway-palms-01.webp" alt="Bright pool walkway leading to the sea" loading="lazy" decoding="async"></div>
       <div class="cta__scrim"></div>
       <div class="cta__inner on-dark">
-        <span class="kicker kicker--light">Found your room?</span>
-        <h2 class="mt-s">Check the dates and we’ll hold it</h2>
-        <p>Book direct for our best rate — and a welcome orchid drink on arrival.</p>
-        <a class="btn" href="booking.html">Check availability
+        <span data-m="kicker" class="kicker kicker--light">Found your room?</span>
+        <h2 data-m="lines" class="mt-s">Check the dates and we’ll hold it</h2>
+        <p data-m="up">Book direct for our best rate — and a welcome orchid drink on arrival.</p>
+        <a data-m="up" class="btn" href="booking.html">Check availability
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -193,7 +195,7 @@
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach">
+        <img src="brand_assets/logos/logo-exact-horizontal-white.svg" alt="Blue Orchid Beach" width="355" height="30" loading="lazy">
         <p>A relaxed tropical-luxury beachfront retreat at Ao Nam Mao, Krabi — where turquoise pools meet the karst horizon and the yellow orchid greets every guest.</p>
         <span class="sha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>SHA Certified</span>
       </div>
@@ -244,7 +246,13 @@
   <span class="sundial__label" aria-hidden="true"><span>Back to top</span></span>
 </button>
 
-<script src="assets/main.js"></script>
+<script src="assets/main.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer onerror="window.__bobFail&&__bobFail()"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+<script src="assets/motion.js" defer></script>
+<script src="assets/motion-pages.js" defer></script>
   <div style="background:#111;color:#bbb;font:400 13px/1.6 system-ui,sans-serif;padding:14px 20px;text-align:center">Unofficial concept. Not affiliated with or endorsed by the business.</div>
 </body>
 </html>
