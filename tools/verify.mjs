@@ -192,8 +192,9 @@ async function run() {
   });
 
   await check('reel', async () => {
+    // record.mjs waits 1500ms after load, then primes reveals (200 + 700ms) before frame 0.
     await b.size(1440, 1000);
-    await b.goto(`${BASE}/`, 1500);
+    await b.goto(`${BASE}/`, 2400);
     const msg = await b.evaluate(`(() => {
       const miss = ['.hero__actions .btn', '#rooms', '.room-card:nth-of-type(1)', '.room-card:nth-of-type(2)'].filter((s) => !document.querySelector(s));
       if (miss.length) return 'missing ' + miss.join(', ');
@@ -211,7 +212,7 @@ async function run() {
       });
       return moving.length ? moving.length + ' headline parts still moving' : '';
     })()`);
-    return msg ? failWith(msg) : 'hero at rest 1.5s after load; reel selectors resolve';
+    return msg ? failWith(msg) : 'hero at rest by the reel\'s first frame; reel selectors resolve';
   });
 
   await check('gallery-filter', async () => {

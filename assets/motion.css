@@ -29,7 +29,6 @@ html.lenis,html.lenis body{height:auto}
 /* ---------- Split text ----------
    Line masks get a little room below so Playfair's descenders aren't clipped. */
 .m-line-mask{padding-bottom:.12em;margin-bottom:-.12em}
-.m-char,.m-word{will-change:transform}
 
 /* ---------- Kicker rule draws in (motion.js tweens --k from 0 to 1) ---------- */
 .kicker::before{transform:scaleX(var(--k,1));transform-origin:right center}
@@ -132,3 +131,16 @@ html.vt-back::view-transition-new(root){animation-name:vt-rise-back;border-radiu
 /* a home room card's photo flies into its suite */
 ::view-transition-group(room-media){animation-duration:.95s;animation-timing-function:cubic-bezier(.7,0,.2,1);overflow:clip;border-radius:24px}
 ::view-transition-old(room-media),::view-transition-new(room-media){height:100%;object-fit:cover}
+
+/* ---------- Home: hero ---------- */
+/* a soft sun glint drifts over the aerial (light, not a grade: screen blend, low opacity) */
+.motion .hero__leak{display:block;position:absolute;inset:-25%;pointer-events:none;mix-blend-mode:screen;opacity:.55;
+  background:radial-gradient(34% 30% at 64% 34%, rgba(255,221,160,.42), transparent 70%);
+  animation:leak 24s ease-in-out infinite alternate}
+@keyframes leak{from{transform:translate(-7%,-4%)}to{transform:translate(7%,5%)}}
+.motion .hero__frame{will-change:transform}
+
+/* ---------- Home: the vibe ---------- */
+.motion .essence::before{animation:breathe 20s ease-in-out infinite alternate;will-change:transform}
+@keyframes breathe{from{transform:scale(1) translate(0,0)}to{transform:scale(1.14) translate(-2.5%,2%)}}
+.motion .essence .feature__media img[data-vibe-main]{transform:scale(1.12)} /* room for the drift */

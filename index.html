@@ -11,6 +11,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..600&family=Raleway:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <link rel="stylesheet" href="assets/motion.css">
@@ -66,8 +67,11 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="hero__media"><img class="kenburns" width="1201" height="900" src="assets/img/hero.webp" alt="Aerial view of Blue Orchid Beach — pool, beach and the turquoise Andaman Sea" fetchpriority="high"></div>
-  <div class="hero__scrim"></div>
+  <div class="hero__frame">
+    <div class="hero__media"><img class="kenburns" width="1201" height="900" src="assets/img/hero.webp" alt="Aerial view of Blue Orchid Beach — pool, beach and the turquoise Andaman Sea" fetchpriority="high"></div>
+    <div class="hero__scrim"></div>
+    <div class="hero__leak" aria-hidden="true"></div>
+  </div>
   <div class="hero__inner">
     <span data-m="enter" class="kicker kicker--light">Ao Nam Mao · Krabi, Thailand</span>
     <h1 data-m="enter" class="hero__tag">Bloom by the Andaman Sea.</h1>
@@ -79,7 +83,7 @@
       <a class="btn btn--light" href="rooms.html">Explore rooms</a>
     </div>
   </div>
-  <div data-m="enter" class="hero__scroll" aria-hidden="true"><span class="mouse"></span>Scroll</div>
+  <div data-m="enter" class="hero__scroll" aria-hidden="true"><span class="hero__tide"></span>Scroll</div>
 </header>
 
 <!-- ============ BOOKING BAR ============ -->

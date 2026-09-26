@@ -276,12 +276,17 @@ body.menu-open .mobile-menu{transform:translateX(0);visibility:visible;transitio
 
 /* ---------- Hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
-.hero__media{position:absolute;inset:0;z-index:-2}
+.hero{background:transparent}
+/* The photo and its scrim live in a frame a little larger than the hero, rounded at the
+   corners; the hero clips it, so the corners only show once motion scales the frame down
+   ("framed by the sea"). */
+.hero__frame{position:absolute;inset:-3vw;z-index:-1;overflow:hidden;border-radius:44px;transform-origin:50% 36%}
+.hero__media{position:absolute;inset:0}
 .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center}
 @media (max-width:768px){.hero__media img{object-position:78% center}}
 .kenburns{animation:kenburns 22s ease-in-out infinite alternate}
-@keyframes kenburns{from{transform:scale(1.05)}to{transform:scale(1.16) translate(-1.5%,-1.4%)}}
-.hero__scrim{position:absolute;inset:0;z-index:-1;
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.1) translate(-1.2%,-1%)}} /* source is 1201px: keep the push gentle */
+.hero__scrim{position:absolute;inset:0;
   background:
     linear-gradient(180deg,rgba(18,24,12,.40) 0%,rgba(18,24,12,0) 26%),
     linear-gradient(0deg,rgba(16,22,10,.78) 0%,rgba(16,22,10,.18) 42%,rgba(16,22,10,0) 70%);
@@ -299,9 +304,10 @@ body.menu-open .mobile-menu{transform:translateX(0);visibility:visible;transitio
 .hero__sub{color:var(--cream);max-width:46ch;margin-top:18px;font-size:1.05rem;text-shadow:0 1px 12px rgba(0,0,0,.6)}
 .hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
 .hero__scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--cream);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;z-index:2}
-.hero__scroll .mouse{width:24px;height:38px;border:2px solid rgba(244,236,220,.6);border-radius:14px;position:relative}
-.hero__scroll .mouse::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;border-radius:3px;background:var(--cream);transform:translateX(-50%);animation:scrollwheel 1.8s var(--ease) infinite}
-@keyframes scrollwheel{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}70%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+.hero__tide{position:relative;width:1px;height:46px;overflow:hidden;background:rgba(244,236,220,.28)}
+.hero__tide::after{content:"";position:absolute;inset:0;background:var(--cream);transform:scaleY(0);transform-origin:top;animation:tideline 2.6s cubic-bezier(.7,0,.2,1) infinite}
+@keyframes tideline{0%{transform:scaleY(0);transform-origin:top}46%{transform:scaleY(1);transform-origin:top}54%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero__leak{display:none}
 
 /* Floating booking bar */
 .bookbar{
@@ -676,7 +682,7 @@ html.still .kenburns{animation:none!important}
 html.still .hero{min-height:820px}
 html.still .pagehead{min-height:520px}
 @media (prefers-reduced-motion:reduce){
-  .kenburns,.hero__scroll .mouse::after{animation:none!important}
+  .kenburns,.hero__tide::after{animation:none!important}
   *{scroll-behavior:auto!important}
 }
 
