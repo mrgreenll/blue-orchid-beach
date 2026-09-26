@@ -41,6 +41,9 @@
     housekeeping: function (g, svg) {
       return g.timeline().from(svg.querySelectorAll('.i-line'), { scaleX: 0, transformOrigin: '0% 50%', duration: 0.6, ease: 'expo.out', stagger: 0.1 });
     },
+    clock: function (g, svg) {
+      return g.timeline().from(svg.querySelector('.i-hands'), { rotation: -360, svgOrigin: '12 12', duration: 1.4, ease: 'expo.inOut' });
+    },
   };
   function tellIcons(M, scope) {
     M.qsa('svg[data-icon]', scope).forEach(function (svg) {
@@ -78,8 +81,66 @@
     tellIcons(M, d);
   });
 
+  /* ================= Gallery ================= */
   BOB.page('gallery', function (M) {
+    var gsap = M.gsap, Flip = window.Flip;
     pagehead(M);
+    tellIcons(M, d);
+
+    // Photos rise in batches as the grid scrolls into view.
+    var grid = d.querySelector('[data-m="batch"]');
+    if (grid) {
+      M.claim(grid);
+      var items = M.qsa('.g-item', grid);
+      gsap.set(grid, { opacity: 1 });
+      gsap.set(items, { opacity: 0, y: 60 });
+      gsap.set(items.map(function (it) { return it.querySelector('img'); }), { scale: 1.18, transition: 'none' });
+      M.ScrollTrigger.batch(items, {
+        start: 'top 94%', once: true,
+        onEnter: function (batch) {
+          gsap.to(batch, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08, clearProps: 'transform' });
+          gsap.to(batch.map(function (it) { return it.querySelector('img'); }), {
+            scale: 1, duration: 1.6, ease: 'expo.out', stagger: 0.08, clearProps: 'transform,transition',
+          });
+        },
+      });
+    }
+
+    // The active fill flows toward the new pill: the old one drains toward it, the new one
+    // fills from the side it came from. Set in the capture phase, before main.js swaps
+    // the classes, so the transitions start from the right edges.
+    var bar = d.querySelector('.filterbar');
+    if (bar) {
+      bar.addEventListener('click', function (e) {
+        var next = e.target.closest && e.target.closest('.filter');
+        var prev = bar.querySelector('.filter.is-active');
+        if (!next || !prev || next === prev) return;
+        var right = next.getBoundingClientRect().left > prev.getBoundingClientRect().left;
+        prev.style.setProperty('--from', right ? 'right' : 'left');
+        next.style.setProperty('--from', right ? 'left' : 'right');
+      }, true);
+    }
+
+    // Filtering re-flows the grid: photos glide to their new places, leavers shrink out,
+    // arrivals bloom in. The grid's height is held so the page doesn't jump meanwhile.
+    if (Flip && grid) {
+      BOB.hooks.galleryFilter = function (apply) {
+        var all = M.qsa('.g-item', grid);
+        var state = Flip.getState(all, { props: 'opacity' });
+        grid.style.minHeight = grid.offsetHeight + 'px';
+        apply();
+        Flip.from(state, {
+          duration: 0.85, ease: 'expo.inOut', stagger: 0.012, absolute: true,
+          onEnter: function (els) {
+            return gsap.fromTo(els, { opacity: 0, scale: 0.86 }, { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)', delay: 0.3 });
+          },
+          onLeave: function (els) {
+            return gsap.to(els, { opacity: 0, scale: 0.86, duration: 0.35, ease: 'power2.in' });
+          },
+          onComplete: function () { grid.style.minHeight = ''; M.ScrollTrigger.refresh(); },
+        });
+      };
+    }
   });
 
   BOB.page('booking', function (M) {

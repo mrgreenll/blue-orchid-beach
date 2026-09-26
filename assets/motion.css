@@ -223,3 +223,11 @@ html.vt-back::view-transition-new(root){animation-name:vt-rise-back;border-radiu
 /* ---------- Inner pages ---------- */
 /* the page-head photo reaches above the header so its scroll parallax never shows a gap */
 .motion .pagehead__media{top:-12%}
+
+/* ---------- Gallery filter: the active fill flows from the old pill into the new one ---------- */
+.motion-live .filter{position:relative;overflow:hidden;isolation:isolate}
+.motion-live .filter::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--foliage);
+  transform:scaleX(0);transform-origin:var(--from,left) center;transition:transform .6s var(--tide)}
+.motion-live .filter.is-active{background:var(--card);border-color:var(--foliage);color:var(--cream)}
+.motion-live .filter.is-active::before{transform:scaleX(1)}
+.motion-live .masonry{position:relative}
