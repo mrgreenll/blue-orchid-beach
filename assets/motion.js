@@ -430,6 +430,78 @@
     }
   }
 
+  /* ================= Viewer: the photo flies out of its thumbnail and back ================= */
+  function thumbOf(trigger) { return trigger && trigger.querySelector('img'); }
+  function centreDelta(a, b) {
+    return { x: a.left + a.width / 2 - (b.left + b.width / 2), y: a.top + a.height / 2 - (b.top + b.height / 2) };
+  }
+  function whenDecoded(img, fn) {
+    if (img.decode) img.decode().then(fn, fn); else fn();
+  }
+  BOB.hooks.lightboxOpen = function (ctx) {
+    var img = ctx.img, thumb = thumbOf(ctx.trigger), cap = ctx.figure.querySelector('figcaption');
+    gsap.set(img, { opacity: 0 });
+    gsap.set(cap, { opacity: 0, y: 14 });
+    whenDecoded(img, function () {
+      var to = img.getBoundingClientRect(), from = thumb && thumb.getBoundingClientRect();
+      if (from && from.width && to.width) {
+        var dlt = centreDelta(from, to);
+        gsap.fromTo(img, { x: dlt.x, y: dlt.y, scale: from.width / to.width, opacity: 1 }, {
+          x: 0, y: 0, scale: 1, duration: 0.85, ease: 'expo.inOut',
+        });
+      } else {
+        gsap.fromTo(img, { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'expo.out' });
+      }
+      gsap.to(cap, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', delay: 0.4 });
+    });
+  };
+  BOB.hooks.lightboxClose = function (ctx, done) {
+    var img = ctx.img, thumb = thumbOf(ctx.trigger);
+    var r = thumb && thumb.getBoundingClientRect();
+    var onScreen = r && r.width && r.bottom > 0 && r.top < w.innerHeight;
+    if (!onScreen) {
+      gsap.to(img, { scale: 0.94, opacity: 0, duration: 0.35, ease: 'power2.in', onComplete: function () { done(); gsap.set(img, { clearProps: 'all' }); } });
+      return;
+    }
+    // A copy flies home at full strength while the backdrop fades out around it.
+    var from = img.getBoundingClientRect();
+    var ghost = img.cloneNode();
+    ghost.className = 'lb-ghost';
+    ghost.removeAttribute('alt');
+    gsap.set(ghost, { left: from.left, top: from.top, width: from.width, height: from.height });
+    d.body.appendChild(ghost);
+    ctx.lb.classList.remove('open');
+    var dlt = centreDelta(r, from);
+    gsap.to(ghost, {
+      x: dlt.x, y: dlt.y, scaleX: r.width / from.width, scaleY: r.height / from.height,
+      duration: 0.7, ease: 'expo.inOut',
+      onComplete: function () { ghost.remove(); done(); gsap.set(img, { clearProps: 'all' }); },
+    });
+  };
+  BOB.hooks.lightboxStep = function (ctx, dir, commit) {
+    var img = ctx.img, cap = ctx.figure.querySelector('figcaption');
+    gsap.to([img, cap], {
+      x: -60 * dir, opacity: 0, duration: 0.28, ease: 'power2.in',
+      onComplete: function () {
+        commit();
+        whenDecoded(img, function () {
+          gsap.fromTo(img, { x: 60 * dir, opacity: 0, scale: 1 }, { x: 0, opacity: 1, duration: 0.6, ease: 'expo.out' });
+          gsap.fromTo(cap, { x: 30 * dir, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: 'expo.out', delay: 0.08 });
+        });
+      },
+    });
+  };
+
+  // The karst mist only drifts while its photo is on screen.
+  function chromeMist() {
+    qsa('.fog').forEach(function (fog) {
+      ScrollTrigger.create({
+        trigger: fog.parentNode, start: 'top bottom', end: 'bottom top',
+        toggleClass: { targets: fog.parentNode, className: 'is-inview' },
+      });
+    });
+  }
+
   /* ================= First-visit intro ================= */
   M.playIntro = function () {
     var intro = d.querySelector('.intro');
@@ -489,6 +561,7 @@
     chromeCursor();
     chromeMagnetic();
     chromeFooter();
+    chromeMist();
     roomHandoff();
     M.chrome.forEach(function (fn) { fn(M); });
     M.entrance = buildEntrance();

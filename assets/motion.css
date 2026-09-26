@@ -189,3 +189,33 @@ html.vt-back::view-transition-new(root){animation-name:vt-rise-back;border-radiu
 .room-card__glare{position:absolute;inset:-50%;z-index:3;pointer-events:none;opacity:0;
   background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.18),transparent 38%);transition:opacity .5s var(--ease)}
 .room-card:hover .room-card__glare{opacity:1}
+
+/* ---------- Home: the kinetic strip (JS drives it; CSS loop is the fallback) ---------- */
+.marquee.is-live .marquee__row{animation:none}
+.marquee.is-live{touch-action:pan-y;cursor:grab}
+.marquee.is-dragging{cursor:grabbing}
+.marquee.is-dragging .marquee__item{pointer-events:none}
+
+/* ---------- Viewer: the photo flies from its thumbnail, so the figure itself holds still ---------- */
+.motion-live .lightbox figure{transform:none;transition:none}
+.lb-ghost{position:fixed;z-index:2100;margin:0;object-fit:cover;border-radius:var(--r);pointer-events:none;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+
+/* ---------- Location: the karst mist drifts (a cinemagraph made of soft gradients) ---------- */
+.fog{display:none}
+.motion .fog{display:block;position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.fog i{position:absolute;left:0;top:4%;width:220%;height:58%;opacity:.36;
+  background:
+    radial-gradient(20% 46% at 14% 56%, rgba(255,255,255,.6), transparent 72%),
+    radial-gradient(26% 52% at 42% 44%, rgba(255,255,255,.48), transparent 72%),
+    radial-gradient(18% 40% at 70% 60%, rgba(255,255,255,.55), transparent 72%),
+    radial-gradient(22% 50% at 92% 48%, rgba(255,255,255,.4), transparent 72%);
+  background-size:50% 100%;background-repeat:repeat-x;
+  animation:fog 90s linear infinite;animation-play-state:paused}
+.fog i+i{top:20%;height:46%;opacity:.22;background-position:30% 0;animation-duration:140s;animation-direction:reverse}
+.locrow__media.is-inview .fog i{animation-play-state:running}
+@keyframes fog{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Home CTA: a warm dusk glow that sinks as you pass ---------- */
+.cta__glow{display:none}
+.motion .cta__glow{display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(40% 48% at 74% 62%, rgba(255,190,112,.46), rgba(255,160,90,.1) 55%, transparent 72%)}

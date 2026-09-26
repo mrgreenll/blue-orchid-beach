@@ -15,6 +15,118 @@
     chapters();
     stats();
     cards();
+    strip();
+    dusk();
+
+    /* ---------- Moments: a strip that feels the scroll ----------
+       Drifts on its own, speeds up and leans with scroll velocity, reverses when you
+       scroll back up, eases to a stop under the pointer, and can be dragged and thrown.
+       A drag never opens the viewer; a plain click still does. */
+    function strip() {
+      var marquee = d.querySelector('.marquee');
+      if (!marquee) return;
+      marquee.classList.add('is-live');
+      var rows = qsa('.marquee__row', marquee).map(function (row) {
+        return {
+          el: row,
+          dir: row.dataset.dir === 'right' ? 1 : -1,
+          x: 0, throwV: 0, period: 1,
+          setX: gsap.quickSetter(row, 'x', 'px'),
+          setSkew: gsap.quickSetter(row, 'skewX', 'deg'),
+        };
+      });
+      function measure() {
+        rows.forEach(function (r) {
+          var items = r.el.children, n = items.length / 2;
+          r.period = items[n].offsetLeft - items[0].offsetLeft || r.el.scrollWidth / 2;
+          if (r.dir > 0 && r.x === 0) r.x = -r.period;
+        });
+      }
+      measure();
+      M.ScrollTrigger.addEventListener('refresh', measure);
+
+      var BASE = 36, active = false, hover = false, dragging = null;
+      var speed = BASE, boost = 0, lean = 0, scrollDir = 1;
+      M.ScrollTrigger.create({
+        trigger: marquee, start: 'top bottom', end: 'bottom top',
+        onToggle: function (self) { active = self.isActive; },
+        onUpdate: function (self) {
+          boost = Math.min(900, Math.abs(self.getVelocity()) * 0.32);
+          scrollDir = self.direction;
+        },
+      });
+      marquee.addEventListener('pointerenter', function () { hover = true; });
+      marquee.addEventListener('pointerleave', function () { hover = false; });
+
+      gsap.ticker.add(function (time, deltaMs) {
+        if (!active && !dragging) return;
+        var dt = Math.min(deltaMs, 50) / 1000;
+        boost *= 0.94;
+        var target = (hover && boost < 20 ? 0 : BASE) + boost;
+        speed += (target - speed) * 0.08;
+        lean += (M.clamp(boost * 0.006 * scrollDir, -5, 5) - lean) * 0.1;
+        rows.forEach(function (r) {
+          if (dragging !== r) {
+            r.x += r.dir * scrollDir * speed * dt + r.throwV * dt;
+            r.throwV *= 0.95;
+          }
+          r.x = ((r.x % r.period) - r.period) % r.period;
+          r.setX(r.x);
+          r.setSkew(lean);
+        });
+      });
+
+      // Drag: nothing happens until the pointer has travelled 6px, so a plain click on a
+      // photo still reaches the viewer.
+      rows.forEach(function (r) {
+        var startX = 0, lastX = 0, lastT = 0, v = 0, pid = null, moved = false;
+        r.el.addEventListener('pointerdown', function (e) {
+          if (e.button) return;
+          pid = e.pointerId; startX = lastX = e.clientX; lastT = performance.now(); moved = false; v = 0;
+        });
+        r.el.addEventListener('pointermove', function (e) {
+          if (e.pointerId !== pid) return;
+          if (!moved && Math.abs(e.clientX - startX) > 6) {
+            moved = true;
+            dragging = r;
+            r.el.setPointerCapture(pid);
+            marquee.classList.add('is-dragging');
+            if (M.cursor) M.cursor.label.textContent = 'Drag';
+          }
+          if (!moved) return;
+          var now = performance.now(), dx = e.clientX - lastX;
+          r.x += dx;
+          v = dx / Math.max(1, now - lastT) * 1000;
+          lastX = e.clientX; lastT = now;
+        });
+        var end = function (e) {
+          if (e.pointerId !== pid) return;
+          pid = null;
+          if (!moved) return;
+          r.throwV = M.clamp(v, -2400, 2400);
+          dragging = null;
+          if (M.cursor) M.cursor.label.textContent = 'View';
+          // The click that follows this pointerup must not open the viewer.
+          requestAnimationFrame(function () { marquee.classList.remove('is-dragging'); });
+        };
+        r.el.addEventListener('pointerup', end);
+        r.el.addEventListener('pointercancel', end);
+      });
+
+      // Keyboard focus on a photo holds the strip still so the focused one stays put.
+      marquee.addEventListener('focusin', function () { hover = true; });
+      marquee.addEventListener('focusout', function () { hover = false; });
+    }
+
+    /* ---------- CTA: the photo settles and a warm dusk glow sinks as you pass ---------- */
+    function dusk() {
+      var cta = d.querySelector('.cta');
+      if (!cta) return;
+      var tl = gsap.timeline({ scrollTrigger: { trigger: cta, start: 'top bottom', end: 'bottom top', scrub: true } });
+      tl.fromTo(cta.querySelector('.cta__media'), { scale: 1.18 }, { scale: 1, ease: 'none', duration: 1 }, 0);
+      var glow = cta.querySelector('.cta__glow');
+      if (glow) tl.fromTo(glow, { yPercent: -6, opacity: 0.95 }, { yPercent: 26, opacity: 0.1, ease: 'none', duration: 1 }, 0);
+    }
 
     /* ---------- Experience: three chapters of a day ---------- */
     function chapters() {
