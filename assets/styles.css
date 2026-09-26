@@ -307,6 +307,7 @@ body.menu-open .mobile-menu{transform:translateX(0);visibility:visible;transitio
 .hero__sub{color:var(--cream);max-width:46ch;margin-top:18px;font-size:1.05rem;text-shadow:0 1px 12px rgba(0,0,0,.6)}
 .hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
 .hero__scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--cream);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;z-index:2}
+@media (max-width:768px){.hero__scroll{display:none}} /* phones: the actions sit where the cue would */
 .hero__tide{position:relative;width:1px;height:46px;overflow:hidden;background:rgba(244,236,220,.28)}
 .hero__tide::after{content:"";position:absolute;inset:0;background:var(--cream);transform:scaleY(0);transform-origin:top;animation:tideline 2.6s cubic-bezier(.7,0,.2,1) infinite}
 @keyframes tideline{0%{transform:scaleY(0);transform-origin:top}46%{transform:scaleY(1);transform-origin:top}54%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -424,6 +425,7 @@ body.menu-open .mobile-menu{transform:translateX(0);visibility:visible;transitio
 .suite__price .from{font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700;display:block}
 .suite__price b{font-family:"Playfair Display",serif;font-size:1.7rem;color:var(--orchid)}
 .suite__price small{color:var(--muted);font-size:.78rem}
+@media (max-width:600px){.suite__price{padding:9px 15px}.suite__price b{font-size:1.3rem}.suite__price .from{font-size:.6rem}} /* keep the photo in view on phones */
 .suite__body h2{margin-bottom:14px}
 .suite__body>p{margin-bottom:20px}
 .amen{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 18px;margin-bottom:26px}
@@ -697,7 +699,8 @@ html:not(.motion-live) .sundial__rot{transform-origin:32px 34px;transform:rotate
 .sundial__glow{fill:var(--yellow-soft);opacity:.2}
 .sundial__label{display:block;overflow:hidden;height:1.5em;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:.95rem;line-height:1.5em;white-space:nowrap}
 .sundial__label>span{display:block}
-@media (max-width:620px){.sundial{left:12px;bottom:12px;padding:7px 9px}.sundial__label{display:none}}
+@media (max-width:620px){.sundial{left:auto;right:12px;bottom:12px;padding:7px 9px}.sundial__label{display:none}}
+.sundial.is-tucked{opacity:0;translate:0 14px;pointer-events:none}
 
 /* Screenshot mode (?still=1): pin viewport-relative heroes so a tall capture window
    doesn't inflate them, and hold every loop still. */

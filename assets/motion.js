@@ -66,7 +66,8 @@
       var target = d.getElementById(decodeURIComponent(url.hash.slice(1)));
       if (!target) return;
       e.preventDefault();
-      M.lenis.scrollTo(target, { offset: -90, duration: 1.6, easing: expoOut });
+      // No offset: Lenis honours the target's scroll-margin-top, which clears the nav.
+      M.lenis.scrollTo(target, { duration: 1.6, easing: expoOut });
       history.pushState(null, '', url.hash);
     });
   }
@@ -294,7 +295,16 @@
     });
     var bar = nav.querySelector('.nav__progress');
     var lastY = w.scrollY, hidden = false;
-    var setHidden = function (v) { if (v !== hidden) { hidden = v; nav.classList.toggle('nav--hide', v); } };
+    var dial = d.querySelector('.sundial');
+    var narrow = w.matchMedia('(max-width: 600px)');
+    // On phones the sun dial tucks away with the nav, so it never sits on the text you
+    // are reading; it returns as soon as you scroll back up.
+    var setHidden = function (v) {
+      if (v === hidden) return;
+      hidden = v;
+      nav.classList.toggle('nav--hide', v);
+      if (dial) dial.classList.toggle('is-tucked', v && narrow.matches);
+    };
     ScrollTrigger.create({
       start: 0, end: 'max',
       onUpdate: function (self) {

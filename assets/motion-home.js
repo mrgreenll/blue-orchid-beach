@@ -319,7 +319,10 @@
 
       // Kicker letters track in; headline words rise out of their line masks with a
       // slight tilt; the rest follows.
-      var kChars = SplitText.create(kicker, { type: 'chars', charsClass: 'm-char' }).chars;
+      // The kicker is an inline-flex row (rule + text), so split an inner wrapper: split
+      // characters placed straight in the flex row would each pick up its gap.
+      kicker.innerHTML = '<span class="kicker__t">' + kicker.innerHTML + '</span>';
+      var kChars = SplitText.create(kicker.firstChild, { type: 'chars', charsClass: 'm-char' }).chars;
       var tagTween, tagPlayed = false;
       SplitText.create(tag, {
         type: 'lines,words', mask: 'lines', linesClass: 'm-line', wordsClass: 'm-word', autoSplit: true,

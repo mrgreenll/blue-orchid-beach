@@ -242,3 +242,13 @@ html.vt-back::view-transition-new(root){animation-name:vt-rise-back;border-radiu
 .confirm{position:relative}
 .petal-burst{position:absolute;left:50%;top:44px;width:0;height:0;pointer-events:none;z-index:2}
 .petal-burst i{position:absolute;left:-7px;top:-4px;width:14px;height:8px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;background:var(--c,var(--yellow-soft))}
+
+/* ---------- Mobile menu: links cascade in behind the sliding panel ---------- */
+.motion .mobile-menu a{opacity:0;transform:translateY(26px);
+  transition:opacity .45s var(--ease),transform .8s var(--tide),color var(--t) var(--ease),translate var(--t) var(--spring)}
+.motion body.menu-open .mobile-menu a{opacity:1;transform:none}
+.motion body.menu-open .mobile-menu a:nth-child(1){transition-delay:.16s}
+.motion body.menu-open .mobile-menu a:nth-child(2){transition-delay:.22s}
+.motion body.menu-open .mobile-menu a:nth-child(3){transition-delay:.28s}
+.motion body.menu-open .mobile-menu a:nth-child(4){transition-delay:.34s}
+.motion body.menu-open .mobile-menu a:nth-child(5){transition-delay:.42s}
