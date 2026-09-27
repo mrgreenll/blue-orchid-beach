@@ -148,22 +148,36 @@
         m.insertBefore(s, m.querySelector('img').nextSibling);
         return s;
       });
-      bodies.forEach(function (b, i) { b.style.setProperty('--row', i + 1); });
+      // Grid rows for each text: desktop puts them in rows 1-3 beside the frame; the stacked
+      // story puts them in rows 2-4, under the pinned photo in row 1.
+      bodies.forEach(function (b, i) { b.style.setProperty('--row', i + 1); b.style.setProperty('--row-m', i + 2); });
 
-      // Wide screens get the sticky chapters; narrow ones keep the stacked features. An
-      // iPad turning across 1024px switches cleanly: each branch sets up its own state
-      // and matchMedia reverts it.
-      gsap.matchMedia().add({ wide: '(min-width: 1024px)', narrow: '(max-width: 1023px)' }, function (ctx) {
-        if (ctx.conditions.wide) wide(); else narrow();
+      // Wide screens: texts beside one sticky frame. Phones and tablets: the photo pins edge
+      // to edge across the top while the texts scroll up beneath it. Short landscape
+      // screens keep the plain stacked features, since a pinned photo would leave too
+      // little room to read. Crossing a breakpoint (an iPad turning) switches cleanly: each
+      // branch sets up its own state and matchMedia reverts it.
+      gsap.matchMedia().add({
+        wide: '(min-width: 1024px)',
+        stack: '(max-width: 1023px) and (min-height: 560px)',
+        short: '(max-width: 1023px) and (max-height: 559px)',
+      }, function (ctx) {
+        var c = ctx.conditions;
+        // Trigger lines are fractions of the viewport. wipe: where the next text's top
+        // starts and finishes pulling its photo in. line: where a text counts as the one
+        // being read. bar: the progress bar's span over the whole section.
+        if (c.wide) story('is-on', { wipe: ['top 88%', 'top 36%'], line: '55%', bar: ['top 25%', 'bottom 75%'] });
+        else if (c.stack) story('is-stack', { wipe: ['top 84%', 'top 52%'], line: '60%', bar: ['top top', 'bottom 60%'] });
+        else plain();
         return function () {
-          grid.classList.remove('is-on');
+          grid.classList.remove('is-on', 'is-stack');
           qsa('.curtain', grid).forEach(function (n) { n.remove(); });
           medias.forEach(function (m) { m.style.zIndex = ''; m.classList.remove('is-layer'); });
           bodies.forEach(function (b) { b.classList.remove('is-active'); });
         };
       });
 
-      function narrow() {
+      function plain() {
         medias.forEach(function (m, i) {
           M.whenVisible(m, M.curtain(m).play);
           var b = badgesOf[i];
@@ -175,8 +189,8 @@
         });
       }
 
-      function wide() {
-        grid.classList.add('is-on');
+      function story(cls, o) {
+        grid.classList.add(cls);
         medias.forEach(function (m, i) { m.style.zIndex = i + 1; if (i) m.classList.add('is-layer'); });
         gsap.set(medias, { opacity: 1 });
         gsap.set(imgs.slice(1), { yPercent: 100 });
@@ -193,7 +207,7 @@
         });
         gsap.fromTo(bar, { scaleX: 0 }, {
           scaleX: 1, ease: 'none',
-          scrollTrigger: { trigger: grid, start: 'top 25%', end: 'bottom 75%', scrub: true },
+          scrollTrigger: { trigger: grid, start: o.bar[0], end: o.bar[1], scrub: true },
         });
 
         // Each later chapter wipes its photo up over the last, which drifts up and dims.
@@ -201,7 +215,7 @@
           var i = k + 1;
           // Durations are explicit: the timeline spans exactly 1, so each wipe fills the
           // whole scroll range instead of finishing at GSAP's default 0.5.
-          gsap.timeline({ scrollTrigger: { trigger: body, start: 'top 88%', end: 'top 36%', scrub: 0.8 } })
+          gsap.timeline({ scrollTrigger: { trigger: body, start: o.wipe[0], end: o.wipe[1], scrub: 0.8 } })
             .fromTo(imgs[i], { yPercent: 100, scale: 1.25 }, { yPercent: 0, scale: 1, ease: 'none', duration: 1 }, 0)
             .to(imgs[i - 1], { yPercent: -14, ease: 'none', duration: 1 }, 0)
             .to(shades[i - 1], { opacity: 0.45, ease: 'none', duration: 1 }, 0)
@@ -209,10 +223,11 @@
             .fromTo(badgesOf[i], { opacity: 0, x: -22 }, { opacity: 1, x: 0, ease: 'none', duration: 0.3 }, 0.7);
         });
 
-        // The chapter in the middle of the screen brightens; the counter rolls to it.
+        // The chapter being read brightens; the counter rolls to it. Each text's range
+        // starts and ends on the same line, so exactly one is active at a time.
         bodies.forEach(function (b, i) {
           M.ScrollTrigger.create({
-            trigger: b, start: 'top 55%', end: 'bottom 55%',
+            trigger: b, start: 'top ' + o.line, end: 'bottom ' + o.line,
             onToggle: function (self) {
               if (!self.isActive) return;
               bodies.forEach(function (x, j) { x.classList.toggle('is-active', j === i); });

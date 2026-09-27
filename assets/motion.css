@@ -145,36 +145,59 @@ html.vt-back::view-transition-new(root){animation-name:vt-rise-back;border-radiu
 @keyframes breathe{from{transform:scale(1) translate(0,0)}to{transform:scale(1.14) translate(-2.5%,2%)}}
 .motion .essence .feature__media img[data-vibe-main]{transform:scale(1.12)} /* room for the drift */
 
-/* ---------- Home: three chapters (wide screens, motion only) ----------
-   JS adds .is-on. The features dissolve into one grid: the texts stack on the left, the
-   three photos share one sticky frame on the right, and each chapter wipes its photo up
-   over the last. Without .is-on this is the ordinary alternating layout. */
+/* ---------- Home: the Experience as three chapters (motion only) ----------
+   JS picks the layout. .is-on (1024px and up): texts on the left, one sticky photo frame
+   on the right. .is-stack (phones and tablets): the photo pins edge to edge across the top
+   and the texts scroll up beneath it. Either way the features dissolve into one grid and
+   each chapter wipes its photo up over the last. Without either class (no JS, reduced
+   motion, short landscape screens) this is the ordinary stacked layout. */
 .chapters__hud,.chapters__shade{display:none}
+.chapters:is(.is-on,.is-stack) .feature{display:contents}
+.chapters:is(.is-on,.is-stack) .feature__body{transition:opacity .8s var(--ease)}
+.chapters:is(.is-on,.is-stack) .feature__body:not(.is-active){opacity:.26}
+.chapters:is(.is-on,.is-stack) .feature__media,.chapters:is(.is-on,.is-stack) .chapters__hud{align-self:start;position:sticky;aspect-ratio:auto;order:0}
+.chapters:is(.is-on,.is-stack) .feature__media.is-layer{box-shadow:none} /* one shadow for the stack */
+.chapters:is(.is-on,.is-stack) .feature__media::after{display:none} /* one shared tint, on the HUD */
+.chapters:is(.is-on,.is-stack) .feature:hover .feature__media img{transform:none}
+.chapters:is(.is-on,.is-stack) .feature__media img{transition:none}
+.chapters:is(.is-on,.is-stack) .chapters__shade{display:block;position:absolute;inset:0;z-index:1;background:#0d1208;opacity:0;pointer-events:none}
+.chapters:is(.is-on,.is-stack) .feature__badge{z-index:2}
+.chapters:is(.is-on,.is-stack) .chapters__hud{display:block;z-index:4;pointer-events:none;overflow:hidden}
+.chapters__hud::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(168,67,101,.12),rgba(65,163,189,.06));mix-blend-mode:multiply}
+.chapters__hud::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(0deg,rgba(13,18,8,.55),transparent)}
+.chapters__count{position:absolute;left:30px;bottom:34px;z-index:1;display:flex;align-items:baseline;gap:10px;color:#fff;
+  font-family:"Playfair Display",Georgia,serif;font-variant-numeric:lining-nums tabular-nums;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.chapters__digits{display:block;height:1em;overflow:hidden;font-size:3rem;line-height:1}
+.chapters__digits i{display:block;font-style:normal;height:1em}
+.chapters__of{font-size:1rem;color:rgba(255,255,255,.72);letter-spacing:.06em}
+.chapters__bar{position:absolute;left:30px;right:30px;bottom:22px;z-index:1;height:2px;background:rgba(255,255,255,.22);border-radius:2px;overflow:hidden}
+.chapters__bar i{position:absolute;inset:0;background:var(--yellow-soft);transform:scaleX(0);transform-origin:left center}
 @media (min-width:1024px){
   .chapters.is-on{grid-template-columns:.85fr 1.15fr;column-gap:clamp(48px,6vw,96px);row-gap:0;align-items:start}
-  .chapters.is-on .feature{display:contents}
-  .chapters.is-on .feature__body{grid-column:1;min-height:84vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-block:6vh;
-    opacity:.26;transition:opacity .8s var(--ease)}
-  .chapters.is-on .feature__body.is-active{opacity:1}
-  .chapters.is-on .feature__media,.chapters.is-on .chapters__hud{grid-column:2;grid-row:1 / span 3;align-self:start;
-    position:sticky;top:calc(50vh - min(32vh,310px));height:min(64vh,620px);aspect-ratio:auto;order:0}
-  .chapters.is-on .feature__body{grid-row:var(--row)}
-  .chapters.is-on .feature__media.is-layer{box-shadow:none} /* one shadow for the stack */
-  .chapters.is-on .feature__media::after{display:none} /* one shared tint, on the HUD */
-  .chapters.is-on .feature:hover .feature__media img{transform:none}
-  .chapters.is-on .feature__media img{transition:none}
-  .chapters.is-on .chapters__shade{display:block;position:absolute;inset:0;z-index:1;background:#0d1208;opacity:0;pointer-events:none}
-  .chapters.is-on .feature__badge{z-index:2}
-  .chapters.is-on .chapters__hud{display:block;z-index:4;pointer-events:none;border-radius:var(--r-lg);overflow:hidden}
-  .chapters__hud::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(168,67,101,.12),rgba(65,163,189,.06));mix-blend-mode:multiply}
-  .chapters__hud::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(0deg,rgba(13,18,8,.55),transparent)}
-  .chapters__count{position:absolute;left:30px;bottom:34px;z-index:1;display:flex;align-items:baseline;gap:10px;color:#fff;
-    font-family:"Playfair Display",Georgia,serif;font-variant-numeric:lining-nums tabular-nums;text-shadow:0 2px 18px rgba(0,0,0,.35)}
-  .chapters__digits{display:block;height:1em;overflow:hidden;font-size:3rem;line-height:1}
-  .chapters__digits i{display:block;font-style:normal;height:1em}
-  .chapters__of{font-size:1rem;color:rgba(255,255,255,.72);letter-spacing:.06em}
-  .chapters__bar{position:absolute;left:30px;right:30px;bottom:22px;z-index:1;height:2px;background:rgba(255,255,255,.22);border-radius:2px;overflow:hidden}
-  .chapters__bar i{position:absolute;inset:0;background:var(--yellow-soft);transform:scaleX(0);transform-origin:left center}
+  .chapters.is-on .feature__body{grid-column:1;grid-row:var(--row);min-height:84vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-block:6vh}
+  .chapters.is-on .feature__media,.chapters.is-on .chapters__hud{grid-column:2;grid-row:1 / span 3;top:calc(50vh - min(32vh,310px));height:min(64vh,620px)}
+  .chapters.is-on .chapters__hud{border-radius:var(--r-lg)}
+}
+@media (max-width:1023px){
+  /* The stage spans every row so it can stay pinned while all three texts pass under it;
+     the negative margins undo the container's 22px gutter so it runs edge to edge. */
+  .chapters.is-stack{--stage:min(46vh,440px);grid-template-columns:minmax(0,1fr);grid-template-rows:var(--stage)}
+  .chapters.is-stack .feature__media,.chapters.is-stack .chapters__hud{grid-column:1;grid-row:1 / span 4;top:0;height:var(--stage);margin-inline:-22px;border-radius:0;box-shadow:none}
+  .chapters.is-stack .chapters__hud{box-shadow:0 24px 30px -24px rgba(20,26,14,.5)}
+  .chapters.is-stack .feature__body{grid-column:1;grid-row:var(--row-m);min-height:calc(100vh - var(--stage) - 40px);
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:10px 0 30px}
+  .chapters.is-stack .feature__body:not(.is-active){opacity:.3}
+  .chapters.is-stack .feature__badge{left:22px}
+  .chapters.is-stack .chapters__count{left:22px;bottom:28px}
+  .chapters.is-stack .chapters__digits{font-size:2.4rem}
+  .chapters.is-stack .chapters__bar{left:22px;right:22px;bottom:16px}
+}
+/* Small viewport units keep the stage steady while a phone's toolbar slides in and out. */
+@supports (height:1svh){
+  @media (max-width:1023px){
+    .chapters.is-stack{--stage:min(46svh,440px)}
+    .chapters.is-stack .feature__body{min-height:calc(100svh - var(--stage) - 40px)}
+  }
 }
 
 /* ---------- Odometer numbers (stats) ---------- */
