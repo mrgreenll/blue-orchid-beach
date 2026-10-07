@@ -1,54 +1,56 @@
-# CLAUDE.md — Frontend Website Rules
+# Blue Orchid Beach Krabi — client website
 
-## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+**Build rules:** `WEB-BUILDS.md` at the workspace root. Read it first — it covers the
+`frontend-design` skill requirement, the localhost + screenshot loop, and the design guardrails.
+Only this project's specifics are below.
 
-## Reference Images
-- If a reference image is provided: match layout, spacing, typography, and color exactly. Swap in placeholder content (images via `https://placehold.co/`, generic copy). Do not improve or add to the design.
-- If no reference image: design from scratch with high craft (see guardrails below).
-- Screenshot your output, compare against reference, fix mismatches, re-screenshot. Do at least 2 comparison rounds. Stop only when no visible differences remain or user says so.
+## Project
 
-## Local Server
-- **Always serve on localhost** — never screenshot a `file:///` URL.
-- Start the dev server: `node serve.mjs` (serves the project root at `http://localhost:3000`)
-- `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
-- If the server is already running, do not start a second instance.
+- Client website. Multi-page static site with its own git repo.
+- Pages: `index.html`, `rooms.html`, `gallery.html`, `booking.html`
+- Shared files in `assets/`
 
-## Screenshot Workflow
-- `screenshot.mjs` drives the system Google Chrome in headless mode (no Puppeteer needed). Chrome must be installed at `/Applications/Google Chrome.app` (macOS default).
-- **Always screenshot from localhost:** `node screenshot.mjs http://localhost:3000`
-- Screenshots are saved automatically to `./temporary screenshots/screenshot-N.png` (auto-incremented, never overwritten).
-- Optional label suffix: `node screenshot.mjs http://localhost:3000 label` → saves as `screenshot-N-label.png`
-- `screenshot.mjs` lives in the project root. Use it as-is.
-- After screenshotting, read the PNG from `temporary screenshots/` with the Read tool — Claude can see and analyze the image directly.
-- When comparing, be specific: "heading is 32px but reference shows ~24px", "card gap is 16px but should be 24px"
-- Check: spacing/padding, font size/weight/line-height, colors (exact hex), alignment, border-radius, shadows, image sizing
+## Brand
 
-## Output Defaults
-- Single `index.html` file, all styles inline, unless user says otherwise
-- Tailwind CSS via CDN: `<script src="https://cdn.tailwindcss.com"></script>`
-- Placeholder images: `https://placehold.co/WIDTHxHEIGHT`
-- Mobile-first responsive
+- `brand_assets/` holds real logos and photography — **use them, not placeholders**.
+- Start with `brand_assets/brand_summary.md` and `brand_assets/MANIFEST.md` (the asset map).
+- Logos: `brand_assets/logos/` — exact horizontal + stacked, white, SVG and PNG.
+- Photos: `brand_assets/photos/` — real property photography (rooms, food).
+- Pages serve WebP copies from `assets/img/` (q72, 1600px long edge). A new photo goes
+  there too, referenced from HTML with `src` — `collect.mjs` copies only what HTML/CSS
+  reference, so no `srcset` and no JS-only image paths.
 
-## Brand Assets
-- Always check the `brand_assets/` folder before designing. It may contain logos, color guides, style guides, or images.
-- If assets exist there, use them. Do not use placeholders where real assets are available.
-- If a logo is present, use it. If a color palette is defined, use those exact values — do not invent brand colors.
+## Motion ("Tide & Light", 2026-09-26)
 
-## Anti-Generic Guardrails
-- **Colors:** Never use default Tailwind palette (indigo-500, blue-600, etc.). Pick a custom brand color and derive from it.
-- **Shadows:** Never use flat `shadow-md`. Use layered, color-tinted shadows with low opacity.
-- **Typography:** Never use the same font for headings and body. Pair a display/serif with a clean sans. Apply tight tracking (`-0.03em`) on large headings, generous line-height (`1.7`) on body.
-- **Gradients:** Layer multiple radial gradients. Add grain/texture via SVG noise filter for depth.
-- **Animations:** Only animate `transform` and `opacity`. Never `transition-all`. Use spring-style easing.
-- **Interactive states:** Every clickable element needs hover, focus-visible, and active states. No exceptions.
-- **Images:** Add a gradient overlay (`bg-gradient-to-t from-black/60`) and a color treatment layer with `mix-blend-multiply`.
-- **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
-- **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
+- Static site, no build. GSAP 3.15 (ScrollTrigger, SplitText; Flip on gallery) and Lenis
+  1.3.26 load from jsDelivr, pinned in each page's script tags.
+- `assets/main.js` holds all behaviour and works alone. `assets/motion.js` is the
+  choreography core; `motion-home.js` / `motion-pages.js` hold page set-pieces. They meet
+  on `BOB.run(hook, …)` — every hook has a plain fallback.
+- Motion roles are `data-m="…"` attributes in the markup (enter, kicker, lines, up, kids,
+  curtain, words, cards, batch, ornament). Start states apply only under `html.motion`,
+  set by the inline boot script in every `<head>`: no JS, reduced motion, a blocked CDN
+  and `?still=1` all render the finished page. Animate `transform`/`opacity` only.
+- `?still=1` = screenshot mode, `?intro=1` forces the first-visit intro. Headless Chrome
+  (verify, frames, the portfolio reel) gets native scroll and no intro.
+- Chrome's `--screenshot` / `--virtual-time-budget` mode (this repo's `screenshot.mjs`, the
+  portfolio's `shoot.mjs`) barely runs animation frames, so the GSAP entrance never
+  finishes there: always shoot with `?still=1`. CDP-driven tools run in real time and are fine.
 
-## Hard Rules
-- Do not add sections, features, or content not in the reference
-- Do not "improve" a reference design — match it
-- Do not stop after one screenshot pass
-- Do not use `transition-all`
-- Do not use default Tailwind blue/indigo as primary color
+## Checks
+
+- Serve with `PORT=3140 node serve.mjs` (port 3000 belongs to another project).
+- `node tools/verify.mjs` — headless regression suite: assets as collect.mjs sees them,
+  console, overflow, clipped text, no-JS, reduced motion, blocked CDN, booking hand-off,
+  the reel's hero-at-rest contract, gallery filter, viewer focus, intro.
+- `node tools/frames.mjs <path> --scroll=a:b:n | --time=ms:n` — frame sequences for
+  reviewing motion (`temporary screenshots/frames/`).
+
+## Portfolio reel
+
+- `Portfolio/tools/reels/blue-orchid-beach.mjs` relies on `.hero__actions .btn`,
+  `#rooms` and the first two `.room-card`s (hover lift + 1.2s zoom) — keep them.
+- Its two scrollTo beats are sized by the distance to `#rooms` (5,905px at 1440×1000,
+  beats 5600/5900ms, ~1,050px/s). If the page above `#rooms` changes height, rescale
+  them, then `node tools/collect.mjs blue-orchid-beach` and `node tools/record.mjs
+  blue-orchid-beach` in `Portfolio/`.

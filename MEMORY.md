@@ -1,0 +1,17 @@
+# Memory — Blue Orchid Beach Krabi
+
+_Last updated: 2026-10-07_
+
+Client website build. Shared build rules: `WEB-BUILDS.md` at the workspace root.
+
+## Memory
+<!-- Decisions and commitments are logged automatically. Everything else only when Leo asks.
+     Persistent — remove or change only if Leo asks. -->
+
+- **Motion overhaul "Tide & Light" (decided 2026-09-26):** GSAP 3.15 + Lenis 1.3.26 (jsDelivr, pinned) + cross-document View Transitions on all four pages; scroll = one day, turquoise morning → dusk → night footer. All four signatures chosen: day-cycle light + sun-dial back-to-top, first-visit intro, page-to-page transitions, cursor bubble + magnetic CTAs. Also fixes 9 audit bugs and serves WebP copies from `assets/img/` (brand_assets originals untouched). Brand type/palette unchanged. Built on branch `motion-showreel`, not pushed — Vercel deploys `main`. Portfolio reel selectors kept; re-record the reel after merging. (added 2026-09-26)
+- **Tide & Light merged into `main` locally (2026-09-27):** fast-forward to `11a359b`, branch `motion-showreel` deleted, 14/14 verify checks green on the merged result. **Not pushed** — `main` is 17 commits ahead of `origin/main`, and pushing deploys to Vercel. Before re-recording the portfolio reel, stretch its two scrollTo beats (4500→5600ms, 4700→5900ms): `#rooms` moved from 4725px to 5905px. (added 2026-09-27)
+- **Tide & Light is live (2026-09-27):** Leo approved; pushed `main` (`cc5b17a..11a359b`) and Vercel deployed within ~10s. `node tools/verify.mjs https://blue-orchid-beach.vercel.app` → 14/14 pass; noindex + disclaimer confirmed on all four live pages; `docs/` and `tools/` 404 as intended. GitHub reports the repo renamed to `mrgreenll/blue-orchid-beach` (old remote URL still redirects). Portfolio still shows the old screenshot and reel until re-shot. (added 2026-09-27)
+- **Mobile Experience story (decided + live 2026-09-27):** Leo picked "photo pinned on top" over "photo fills the screen" for phones and tablets. Below 1024px the photo pins edge to edge across the top (46% of the screen, max 440px) while the three chapter texts scroll beneath it, wiping 01→02→03; landscape phones under 560px tall keep the plain stack; desktop unchanged. Pushed `d01a3a6`; live verify 14/14. (added 2026-09-27)
+- **Portfolio reel re-recorded (2026-09-27):** beats stretched to 5600/5900ms and recorded from the live version; 18.7s, loop seam 1.4%, within budget. Local only — not deployed, because a portfolio deploy would also publish Leo's unpublished About rewrite. Details in `Portfolio/MEMORY.md`. (added 2026-09-27)
+- **Portfolio reel deployed (2026-09-27):** Leo said to deploy, so the new reel went live on leosilvagni.com together with his About rewrite; verified live. (added 2026-09-27)
+- **Follow-up fixes (2026-10-07):** `MEMORY.md` added to `.vercelignore` (68e6aa8) so committing it can't publish it; local `origin` now points at the renamed repo `mrgreenll/blue-orchid-beach`. The stale GitHub Pages copy (mrgreenll.github.io/blue-orchid-beach, a 12 Aug build) is retired: GitHub's API refuses to disable Pages for a gh-pages-branch site (HTTP 422), so gh-pages now holds a noindex redirect page (e38dcb6) sending every path and #anchor to the same page on Vercel; history kept, reversible. Still mode (`?still=1`) now pins the hero to 820px only in windows taller than 1300px (70bca29), so normal-size still shots show the true hero. (added 2026-10-07)
