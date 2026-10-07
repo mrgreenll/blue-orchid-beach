@@ -704,11 +704,14 @@ html:not(.motion-live) .sundial__rot{transform-origin:32px 34px;transform:rotate
 @media (max-width:620px){.sundial{left:auto;right:12px;bottom:12px;padding:7px 9px}.sundial__label{display:none}}
 .sundial.is-tucked{opacity:0;translate:0 14px;pointer-events:none}
 
-/* Screenshot mode (?still=1): pin viewport-relative heroes so a tall capture window
-   doesn't inflate them, and hold every loop still. */
+/* Screenshot mode (?still=1): hold every loop still, and pin viewport-relative heroes
+   so a tall full-page capture window doesn't inflate them. Only in windows taller than
+   a real screen: a normal-sized still shot (the portfolio card) shows the true hero. */
 html.still .kenburns{animation:none!important}
-html.still .hero{min-height:820px}
-html.still .pagehead{min-height:520px}
+@media (min-height:1300px){
+  html.still .hero{min-height:820px}
+  html.still .pagehead{min-height:520px}
+}
 @media (prefers-reduced-motion:reduce){
   .kenburns,.hero__tide::after{animation:none!important}
   *{scroll-behavior:auto!important}
